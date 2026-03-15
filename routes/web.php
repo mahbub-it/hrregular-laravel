@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,4 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Admin Dashboard Related Group
+
+Route::group(['prefix' => 'admin'], function () {
+    Route::get('dashboard', [AdminController::class, 'index']);
+});
+
+require __DIR__ . '/auth.php';
