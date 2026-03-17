@@ -512,3 +512,9 @@ RegisterLink.addEventListener('click', () =>{
 LoginLink.addEventListener('click', () => {
     container.classList.remove('active');
 })
+
+#
+
+# Code
+- php artisan make:controller AuthController
+- php artisan make:controller EmployeeController --resource
