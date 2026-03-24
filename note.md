@@ -518,3 +518,8 @@ LoginLink.addEventListener('click', () => {
 # Code
 - php artisan make:controller AuthController
 - php artisan make:controller EmployeeController --resource
+- php artisan make:seeder UserSeeder
+- php artisan make:seeder EmployeeSeeder
+- php artisan make:model Employee
+- php artisan make:factory EmployeeFactory
+- php artisan migrate:fresh --seed
