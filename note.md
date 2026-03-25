@@ -523,3 +523,6 @@ LoginLink.addEventListener('click', () => {
 - php artisan make:model Employee
 - php artisan make:factory EmployeeFactory
 - php artisan migrate:fresh --seed
+- php artisan make:seeder DesignationSeeder
+- php artisan make:model Designation
+- php artisan make:factory DesignationFactory

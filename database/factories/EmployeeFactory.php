@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Designation;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -16,13 +18,14 @@ class EmployeeFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+
+    public function definition()
     {
+        $users = User::all()->pluck('id')->toArray();
+        $designations = Designation::all()->pluck('id')->toArray();
         return [
-            'user_id' => fake()->numberBetween(1, 20),
-            'name' => fake()->unique()->name(),
-            'profile_picture' => fake()->imageURL(),
-            'designation_id' => fake()->numberBetween(1, 20),
+            'user_id' => fake()->unique()->randomElement($users),
+            'designation_id' => fake()->randomElement($designations),
             'department_id' => fake()->numberBetween(1, 20),
             'country_id' => fake()->numberBetween(1, 20),
             'mobile' => fake()->phoneNumber(),
