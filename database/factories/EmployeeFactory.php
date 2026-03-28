@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Department;
 use App\Models\Designation;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,10 +24,11 @@ class EmployeeFactory extends Factory
     {
         $users = User::all()->pluck('id')->toArray();
         $designations = Designation::all()->pluck('id')->toArray();
+        $depertments = Department::all()->pluck('id')->toArray();
         return [
             'user_id' => fake()->unique()->randomElement($users),
             'designation_id' => fake()->randomElement($designations),
-            'department_id' => fake()->numberBetween(1, 20),
+            'department_id' => fake()->randomElement($depertments),
             'country_id' => fake()->numberBetween(1, 20),
             'mobile' => fake()->phoneNumber(),
             'gender' => fake()->randomElement(['male', 'female', 'other']),

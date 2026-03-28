@@ -526,3 +526,9 @@ LoginLink.addEventListener('click', () => {
 - php artisan make:seeder DesignationSeeder
 - php artisan make:model Designation
 - php artisan make:factory DesignationFactory
+- php artisan make:model Department
+- php artisan make:seeder DepartmentSeeder
+- php artisan make:factory DepartmentFactory
+- php artisan make:model Country
+- php artisan make:seeder CountrySeeder
+- php artisan make:factory CountryFactory

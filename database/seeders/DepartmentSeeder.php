@@ -2,18 +2,17 @@
 
 namespace Database\Seeders;
 
-use App\Models\Designation;
-use App\Models\User;
+use App\Models\Department;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class DesignationSeeder extends Seeder
+class DepartmentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Designation::factory(5)->create();
+        Department::factory(5)->create();
     }
 }

@@ -24,11 +24,6 @@ class DesignationFactory extends Factory
             'Project Manager',
             'IT Manager',
             'Software Developer',
-            'Web Developer',
-            'Network Engineer',
-            'HR Manager',
-            'Accountant',
-            'Designer',
         ];
 
         return [
