@@ -532,3 +532,4 @@ LoginLink.addEventListener('click', () => {
 - php artisan make:model Country
 - php artisan make:seeder CountrySeeder
 - php artisan make:factory CountryFactory
+- php artisan migrate:fresh --seed
