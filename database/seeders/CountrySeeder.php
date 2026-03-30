@@ -25,7 +25,7 @@ class CountrySeeder extends Seeder
             $country = new Country();
             $country->country_name = $single_country['name'];
             $country->country_code = $single_country['code'];
-            $country->flag_img = $single_country['code'] . '.png';
+            $country->flag_img = strtolower($single_country['code']) . '.png';
             $country->save();
         }
     }

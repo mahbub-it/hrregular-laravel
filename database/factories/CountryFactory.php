@@ -18,18 +18,18 @@ class CountryFactory extends Factory
     public function definition()
     {
         // All department name
-        $countries = file_get_contents(storage_path('countries/countries.json'));
+        // $countries = file_get_contents(storage_path('countries/countries.json'));
 
-        $countries_array = json_decode($countries, true);
+        // $countries_array = json_decode($countries, true);
 
-        $country_name = array_column($countries_array, 'name');
+        // $country_name = array_column($countries_array, 'name');
 
-        $country_codes = array_column($countries_array, 'code');
+        // $country_codes = array_column($countries_array, 'code');
 
-        return [
-            'country_name' => fake()->unique()->randomElement($country_name),
-            'country_code' => fake()->unique()->randomElement($country_codes),
-            'flag_img' => null,
-        ];
+        // return [
+        //     'country_name' => fake()->unique()->randomElement($country_name),
+        //     'country_code' => fake()->unique()->randomElement($country_codes),
+        //     'flag_img' => null,
+        // ];
     }
 }

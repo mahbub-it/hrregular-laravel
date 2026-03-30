@@ -535,3 +535,6 @@ LoginLink.addEventListener('click', () => {
 - php artisan migrate:fresh --seed
 
 - mv /var/www/html/hrregular/public/countries /var/www/html/hrregular/public/data
+
+- https://github.com/hampusborgos/country-flags
+- https://github.com/hampusborgos/country-flags/blob/main/data/countries.json
