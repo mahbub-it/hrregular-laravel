@@ -31,7 +31,7 @@ class EmployeeFactory extends Factory
             'department_id' => fake()->randomElement($depertments),
             'country_id' => fake()->numberBetween(1, 20),
             'mobile' => fake()->phoneNumber(),
-            'gender' => fake()->randomElement(['male', 'female', 'other']),
+            'gender' => 'male',
             'joining_date' => fake()->date(),
             'birth_date' => fake()->date(),
             'reporting_to' => fake()->numberBetween(1, 20),
@@ -40,9 +40,9 @@ class EmployeeFactory extends Factory
             'about' => fake()->paragraph(),
             'login_permission' => fake()->boolean(),
             'notification_permission' => fake()->boolean(),
-            'hourly_rate' => fake()->randomFloat(2, 10, 100),
+            'hourly_rate' => fake()->randomFloat(),
             'slack_username' => fake()->userName(),
-            'skills' => fake()->text(),
+            'skills' => fake()->paragraph(),
         ];
     }
 }

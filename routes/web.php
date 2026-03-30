@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\AdminController;
-// use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -33,3 +33,29 @@ Route::group(['prefix' => 'admin'], function () {
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [AuthController::class, 'login']);
 });
+
+// Countries List Route
+Route::get('/countries', function () {
+    // Manually define the full path since it's not in storage/app/
+    $path = storage_path('countries/countries.json');
+
+    if (!file_exists($path)) {
+        return response()->json(['error' => 'File not found at ' . $path], 404);
+    }
+
+    $json = file_get_contents($path);
+
+    // Check if the file is empty
+    if (empty(trim($json))) {
+        return response()->json(['error' => 'File is empty'], 500);
+    }
+
+    $data = json_decode($json, true);
+
+    // If data is empty but valid JSON, it returns {}
+    echo "<pre>";
+    print_r(array_column($data, 'name'));
+    echo "</pre>";
+
+});
+

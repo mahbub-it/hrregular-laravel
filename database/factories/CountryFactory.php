@@ -15,20 +15,21 @@ class CountryFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    public function definition()
     {
         // All department name
-        $countries = [
-            'Bangladesh',
-            'India',
-            'Pakistan',
-            'Nepal',
-            'Bhutan',
-        ];
+        $countries = file_get_contents(storage_path('countries/countries.json'));
+
+        $countries_array = json_decode($countries, true);
+
+        $country_name = array_column($countries_array, 'name');
+
+        $country_codes = array_column($countries_array, 'code');
 
         return [
-            'country_name' => $this->faker->unique()->randomElement($countries),
-            'flag_img' => $this->faker->image('public/flags', 640, 480, 'country', false),
+            'country_name' => fake()->unique()->randomElement($country_name),
+            'country_code' => fake()->unique()->randomElement($country_codes),
+            'flag_img' => null,
         ];
     }
 }

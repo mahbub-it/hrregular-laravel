@@ -533,3 +533,5 @@ LoginLink.addEventListener('click', () => {
 - php artisan make:seeder CountrySeeder
 - php artisan make:factory CountryFactory
 - php artisan migrate:fresh --seed
+
+- mv /var/www/html/hrregular/public/countries /var/www/html/hrregular/public/data
