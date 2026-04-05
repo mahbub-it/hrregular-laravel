@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             DesignationSeeder::class,
             CountrySeeder::class,
             EmployeeSeeder::class,
+            LanguageSeeder::class,
 
         ]);
     }

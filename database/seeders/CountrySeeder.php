@@ -17,10 +17,6 @@ class CountrySeeder extends Seeder
 
         $countries_array = json_decode($countries, true);
 
-        $country_name = array_column($countries_array, 'name');
-
-        $country_code = array_column($countries_array, 'code');
-
         foreach ($countries_array as $single_country) {
             $country = new Country();
             $country->country_name = $single_country['name'];
