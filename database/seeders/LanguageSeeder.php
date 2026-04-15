@@ -12,7 +12,7 @@ class LanguageSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run(): void
+    public function run()
     {
         $countries = file_get_contents(storage_path('countries/languages.json'));
         $languages_array = json_decode($countries, true);
@@ -20,16 +20,23 @@ class LanguageSeeder extends Seeder
         foreach ($languages_array as $single_country) {
 
             $country_name = $single_country['country'];
-            $country_id = Country::firstWhere('country_name', $country_name)->id;
+            $country_match = Country::where('country_name', $country_name)->first();
 
-            $language = $single_country['language'];
+            if (isset($country_match->id)) {
+                $country_id = $country_match->id;
 
-            foreach ($language as $language) {
-                $language = new Language();
-                $language->language_name = $language;
-                $language->country_id = $country_id;
-                $language->save();
+                $languages = $single_country['languages'];
+
+                if (isset($country_id) && !empty($country_id)) {
+                    foreach ($languages as $language) {
+                        $lang = new Language;
+                        $lang->language_name = $language;
+                        $lang->country_id = $country_id;
+                        $lang->save();
+                    }
+                }
             }
+
         }
     }
 }

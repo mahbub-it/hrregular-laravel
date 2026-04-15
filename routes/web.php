@@ -3,6 +3,8 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
+use App\Models\Country;
+use App\Models\Language;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -35,27 +37,30 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 // Countries List Route
-Route::get('/countries', function () {
-    // Manually define the full path since it's not in storage/app/
-    $path = storage_path('countries/countries.json');
+Route::get('countries', function () {
 
-    if (!file_exists($path)) {
-        return response()->json(['error' => 'File not found at ' . $path], 404);
+    $countries = file_get_contents(storage_path('countries/languages.json'));
+    $languages_array = json_decode($countries, true);
+
+    foreach ($languages_array as $single_country) {
+
+        $country_name = $single_country['country'];
+        $country_match = Country::where('country_name', $country_name)->first();
+
+        if (isset($country_match->id)) {
+            $country_id = $country_match->id;
+
+            $languages = $single_country['languages'];
+
+            if (isset($country_id) && !empty($country_id)) {
+                foreach ($languages as $language) {
+                    $lang = new Language;
+                    $lang->language_name = $language;
+                    $lang->country_id = $country_id;
+                    $lang->save();
+                }
+            }
+        }
     }
-
-    $json = file_get_contents($path);
-
-    // Check if the file is empty
-    if (empty(trim($json))) {
-        return response()->json(['error' => 'File is empty'], 500);
-    }
-
-    $data = json_decode($json, true);
-
-    // If data is empty but valid JSON, it returns {}
-    echo "<pre>";
-    print_r(array_column($data, 'name'));
-    echo "</pre>";
-
 });
 
