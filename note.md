@@ -538,3 +538,5 @@ LoginLink.addEventListener('click', () => {
 
 - https://github.com/hampusborgos/country-flags
 - https://github.com/hampusborgos/country-flags/blob/main/data/countries.json
+
+- php artisan make:controller UserController --resource

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
 use App\Models\Country;
 use App\Models\Language;
 use Illuminate\Support\Facades\Route;
@@ -11,10 +12,6 @@ use Illuminate\Support\Facades\Storage;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -25,10 +22,13 @@ Route::get('/dashboard', function () {
 // Admin Dashboard Related Group
 Route::group(['prefix' => 'admin'], function () {
     // Dashboard Route
-    Route::get('dashboard', [AdminController::class, 'index']);
+    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
+    // User List Route
+    Route::get('users', [UserController::class, 'index'])->name('admin.users');
 
     // Employee List Route
-    Route::get('employee', [EmployeeController::class, 'index']);
+    Route::get('employees', [EmployeeController::class, 'index'])->name('admin.employees');
 });
 
 // Authentication Related Group for Guest User
