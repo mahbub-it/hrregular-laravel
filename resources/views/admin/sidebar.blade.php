@@ -76,10 +76,11 @@
         <!-- SIDEBAR MENU START -->
         <div class="sidebar-menu " id="sideMenuScroll">
             <ul>
-                <!-- NAV ITEM - DASHBOARD COLLAPSE MENU-->
+                <!-- NAV ITEM - DASHBOARD -->
                 <li class="accordionItem closeIt">
 
-                    <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading " title="Dashboard">
+                    <a href="{{ route('admin.dashboard') }}" class="nav-item text-white f-15 sidebar-text-color"
+                        title="Dashboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-house" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"
@@ -91,19 +92,8 @@
 
                     </a>
 
-                    <div class="accordionItemContent">
-                        <!-- COLLAPSE - INFORMATION -->
-                        <a class="f-14 text-lightest" href="dashboard.html" title="Private Dashboard">Private
-                            Dashboard
-                        </a>
-                        <!-- COLLAPSE - INFORMATION -->
-                        <a class="f-14 text-lightest" href="dashboard-advanced.html" title="Advanced Dashboard">Advanced
-                            Dashboard
-                        </a>
-                    </div>
+
                 </li>
-
-
 
                 <!-- NAV ITEM - User COLLAPASE MENU -->
                 <li class="accordionItem closeIt">
