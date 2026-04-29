@@ -37,7 +37,7 @@ class EmployeeFactory extends Factory
             'reporting_to' => fake()->numberBetween(1, 20),
             'language_id' => fake()->numberBetween(1, 20),
             'address' => fake()->address(),
-            'about' => fake()->paragraph(),
+            'about' => fake()->sentence(3),
             'login_permission' => fake()->boolean(),
             'notification_permission' => fake()->boolean(),
             'hourly_rate' => fake()->randomFloat(),

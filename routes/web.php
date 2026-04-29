@@ -6,6 +6,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
 use App\Models\Country;
 use App\Models\Language;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
 
@@ -37,9 +38,11 @@ Route::group(['middleware' => 'guest'], function () {
 });
 
 // Countries List Route
-Route::get('countries', function () {
+Route::get('users', function () {
 
-    //
+    $users = User::find(1);
+
+    // dd($users->employee->designation->designation_name); 
 
 });
 

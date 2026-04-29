@@ -30,4 +30,14 @@ class Employee extends Model
         'skills',
         'timestamps',
     ];
+
+    public function designation()
+    {
+        return $this->belongsTo(Designation::class);
+    }
+
+    // public function department()
+    // {
+    //     return $this->hasOne(Department::class, 'id', 'department_id');
+    // }
 }
