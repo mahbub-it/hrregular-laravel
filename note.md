@@ -540,3 +540,10 @@ LoginLink.addEventListener('click', () => {
 - https://github.com/hampusborgos/country-flags/blob/main/data/countries.json
 
 - php artisan make:controller UserController --resource
+# Code pagination
+- if($users->hasPages()){
+
+    {{ $users->links('vendor.pagination.bootstrap-4') }}
+
+}
+- php artisan vendor:publish --tag=laravel-pagination
