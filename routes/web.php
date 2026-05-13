@@ -25,8 +25,14 @@ Route::group(['prefix' => 'admin'], function () {
     // Dashboard Route
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
-    // User List Route
+    // User List User List
     Route::get('users', [UserController::class, 'index'])->name('admin.users');
+
+    // User Create User Create
+    Route::get('users/create', [UserController::class, 'create'])->name('admin.users.create');
+
+    // User Store User Store
+    Route::post('users/store', [UserController::class, 'store'])->name('admin.users.store');
 
     // Employee List Route
     Route::get('employees', [EmployeeController::class, 'index'])->name('admin.employees');
@@ -42,7 +48,7 @@ Route::get('users', function () {
 
     $users = User::find(1);
 
-    // dd($users->employee->designation->designation_name); 
+    // dd($users->employee->designation->designation_name);  
 
 });
 

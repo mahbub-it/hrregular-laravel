@@ -12,8 +12,20 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(4);
-        return view('admin.users.user-list', compact('users'));
+
+        // Display Users based on search and pagination
+        if (!isset($_GET['user']) || empty($_GET['user'])) {
+            $users = User::paginate(4);
+
+            $pagination = 1;
+        } else {
+            $search_keyword = isset($_GET['user']) ? $_GET['user'] : '';
+
+            $users = User::where('name', 'LIKE', '%' . $search_keyword . '%')->orWhere('email', 'LIKE', '%' . $search_keyword . '%')->get();
+
+            $pagination = 0;
+        }
+        return view('admin.users.user-list', compact('users', 'pagination'));
     }
 
     /**
@@ -21,7 +33,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        // View for user creation form
+        return view('admin.users.create-user');
     }
 
     /**
@@ -29,7 +42,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validation
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required | email | unique:users',
+            'password' => 'required | min:6 | confirmed',
+        ]);
+
+        // Add user to DB
+        $user = new User();
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+
+        if ($the_user = $user->save()) {
+            return redirect()->route('admin.users')->with('success', 'User created successfully');
+        } else {
+            return redirect()->route('admin.users')->with('error', 'User creation failed');
+        }
     }
 
     /**
