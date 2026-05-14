@@ -41,7 +41,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::post('users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
 
     // User Delete User Delete 
-    // Route::post('users/delete/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+    Route::delete('users/delete/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
 
     // Employee List Route
     Route::get('employees', [EmployeeController::class, 'index'])->name('admin.employees');

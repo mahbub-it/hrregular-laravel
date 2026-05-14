@@ -16,13 +16,13 @@ class UserController extends Controller
 
         // Display Users based on search and pagination
         if (!isset($_GET['user']) || empty($_GET['user'])) {
-            $users = User::orderBy('created_at', 'desc')->paginate(4);
+            $users = User::orderBy('id', 'desc')->paginate(4);
 
             $pagination = 1;
         } else {
             $search_keyword = isset($_GET['user']) ? $_GET['user'] : '';
 
-            $users = User::orderBy('created_at', 'desc')->where('name', 'LIKE', '%' . $search_keyword . '%')->orWhere('email', 'LIKE', '%' . $search_keyword . '%')->get();
+            $users = User::orderBy('id', 'desc')->where('name', 'LIKE', '%' . $search_keyword . '%')->orWhere('email', 'LIKE', '%' . $search_keyword . '%')->get();
 
             $pagination = 0;
         }
@@ -107,6 +107,13 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Delete User
+        $user = User::find($id);
+
+        if ($the_user = $user->delete()) {
+            return redirect()->route('admin.users')->with('success', 'User deleted successfully');
+        } else {
+            return redirect()->route('admin.users')->with('error', 'User deletion failed');
+        }
     }
 }

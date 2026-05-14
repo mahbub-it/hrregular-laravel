@@ -23,8 +23,21 @@
                     @endif
                 </div>
             </div>
+            <!-- sesion success message -->
+            @if (session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            <!-- error message -->
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
 
         </div>
+
     </div>
 
     <div class="bg-light"></div>
@@ -73,13 +86,45 @@
                         </div>
 
                         <!-- Action Buttons for Edit and Delete -->
+
                         <div class=" text-center action-buttons justify-content-center align-items-center">
 
                             <a href="{{ route('admin.users.edit', $user->id) }}"
                                 class="btn btn-primary py-1 px-4 link-light">Edit</a>
 
-                            <a href="#" class="btn btn-danger py-1 px-4 link-light">Delete</a>
+                            <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger py-1 px-4 link-light"
+                                data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
+
+                            <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                                    aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete User</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete {{ $user->name }} this user?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary"
+                                                    data-bs-dismiss="modal">No</button>
+                                                <button type="submit" class="btn btn-danger">Yes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
                         </div>
+
+
 
                         <!-- Footer Button using multi colors -->
                         <div class="card-footer bg-transparent border-0 p-0 pt-3">

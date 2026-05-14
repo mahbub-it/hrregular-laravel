@@ -31,7 +31,6 @@
     <!-- Bootstrap Icons CDN -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-
     <!-- Template CSS -->
     <link type="text/css" rel="stylesheet" media="all" href="{{ asset('/assets/css/main.css') }}">
 
@@ -41,16 +40,11 @@
     <meta name="theme-color" content="#ffffff">
     <meta name="csrf-token" content="8tzOEL4nT9Bva1qlJPL4LXVNFcMhCFO0mGtqX3fh" />
 
-
     <link rel="stylesheet" href=" {{ asset('/assets/css/main.min.css') }}" defer="defer">
-
-
 
     <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/js/modernizr.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap-colorpicker.js') }}"></script>
-
-
     <script src="{{ asset('assets/js/bootstrap-timepicker.min.js') }}" defer="defer"></script>
 
 </head>
