@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
@@ -15,13 +16,13 @@ class UserController extends Controller
 
         // Display Users based on search and pagination
         if (!isset($_GET['user']) || empty($_GET['user'])) {
-            $users = User::paginate(4);
+            $users = User::orderBy('created_at', 'desc')->paginate(4);
 
             $pagination = 1;
         } else {
             $search_keyword = isset($_GET['user']) ? $_GET['user'] : '';
 
-            $users = User::where('name', 'LIKE', '%' . $search_keyword . '%')->orWhere('email', 'LIKE', '%' . $search_keyword . '%')->get();
+            $users = User::orderBy('created_at', 'desc')->where('name', 'LIKE', '%' . $search_keyword . '%')->orWhere('email', 'LIKE', '%' . $search_keyword . '%')->get();
 
             $pagination = 0;
         }
@@ -77,7 +78,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Edit User View
+        $user = User::find($id);
+        return view('admin.users.edit-user', compact('user'));
     }
 
     /**
@@ -85,7 +88,18 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Update User
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+
+        if ($the_user = $user->save()) {
+            return redirect()->route('admin.users.edit', $id)->with('success', 'User updated successfully');
+        } else {
+            return redirect()->route('admin.users.edit', $id)->with('error', 'User update failed');
+        }
     }
 
     /**

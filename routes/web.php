@@ -34,6 +34,15 @@ Route::group(['prefix' => 'admin'], function () {
     // User Store User Store
     Route::post('users/store', [UserController::class, 'store'])->name('admin.users.store');
 
+    // User Edit User Edit
+    Route::get('users/edit/{id}', [UserController::class, 'edit'])->name('admin.users.edit');
+
+    // User Update User Update
+    Route::post('users/update/{id}', [UserController::class, 'update'])->name('admin.users.update');
+
+    // User Delete User Delete 
+    // Route::post('users/delete/{id}', [UserController::class, 'destroy'])->name('admin.users.destroy');
+
     // Employee List Route
     Route::get('employees', [EmployeeController::class, 'index'])->name('admin.employees');
 });

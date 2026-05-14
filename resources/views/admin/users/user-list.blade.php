@@ -66,10 +66,19 @@
                             <p class="text-muted small fw-bold mb-3">Designation</p>
 
                             <!-- Contact Info -->
-                            <div class="text-start ps-2">
-                                <p class="small text-muted mb-1"><i class="bi bi-envelope-fill opacity-50 me-2"></i>
+                            <div class="text-center py-1 justify-content-center align-items-center">
+                                <p class="text-muted"><i class="bi bi-envelope-fill opacity-50"></i>
                                     {{ $user->email }}</p>
                             </div>
+                        </div>
+
+                        <!-- Action Buttons for Edit and Delete -->
+                        <div class=" text-center action-buttons justify-content-center align-items-center">
+
+                            <a href="{{ route('admin.users.edit', $user->id) }}"
+                                class="btn btn-primary py-1 px-4 link-light">Edit</a>
+
+                            <a href="#" class="btn btn-danger py-1 px-4 link-light">Delete</a>
                         </div>
 
                         <!-- Footer Button using multi colors -->
