@@ -58,9 +58,9 @@ class UserController extends Controller
         $user->save();
 
         if ($the_user = $user->save()) {
-            return redirect()->route('admin.users')->with('success', 'User created successfully');
+            return redirect()->route('admin.users.create')->with('success', 'User created successfully');
         } else {
-            return redirect()->route('admin.users')->with('error', 'User creation failed');
+            return redirect()->route('admin.users.create')->with('error', 'User creation failed');
         }
     }
 

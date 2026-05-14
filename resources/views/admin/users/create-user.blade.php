@@ -5,6 +5,7 @@
     <div class="bg-light py-4">
         <div class="container">
 
+            <!-- Error Notifications for user creation fields -->
             @if(session('success'))
                 <div class="alert alert-success">
                     {{ session('success') }}
@@ -26,6 +27,7 @@
                     </ul>
                 </div>
             @endif
+            <!-- End of Error Notifications -->
 
             <h4>Create New User</h4>
             <div class="row row-cols-1 row-cols-md-1 row-cols-lg-2">
