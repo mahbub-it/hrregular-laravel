@@ -547,3 +547,11 @@ LoginLink.addEventListener('click', () => {
 
 }
 - php artisan vendor:publish --tag=laravel-pagination
+
+# Image upload
+- <input type="file" name="profile_picture" id="image" class="d-none form-control" style="width: 300px;">
+<label for="image" class="btn btn-info my-2 mx-auto" style="width: 300px;">Upload Image</label>
+
+- composer require "spatie/laravel-medialibrary"
+- php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider"
+ - php artisan migrate 13:26

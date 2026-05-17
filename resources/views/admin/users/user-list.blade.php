@@ -65,7 +65,8 @@
                         <div class="text-center position-relative" style="z-index: 1;">
                             <div class="avatars p-3">
                                 <!-- Appending a random query parameter to bypass browser cache -->
-                                <img class="rounded-circle" src="{{ $user->profile_picture }}?random={{ rand() }}"
+                                <img class="rounded-circle"
+                                    src="{{ $user->hasMedia('profile_picture') ? $user->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}"
                                     alt="User Image">
                             </div>
 

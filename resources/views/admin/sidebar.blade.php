@@ -77,7 +77,7 @@
         <div class="sidebar-menu " id="sideMenuScroll">
             <ul>
                 <!-- NAV ITEM - DASHBOARD -->
-                <li class="accordionItem closeIt">
+                <li class="accordionItem">
 
                     <a href="{{ route('admin.dashboard') }}" class="nav-item text-white f-15 sidebar-text-color"
                         title="Dashboard">
@@ -96,7 +96,7 @@
                 </li>
 
                 <!-- NAV ITEM - User COLLAPASE MENU -->
-                <li class="accordionItem closeIt">
+                <li class="accordionItem">
 
                     <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading " title="HR">
 

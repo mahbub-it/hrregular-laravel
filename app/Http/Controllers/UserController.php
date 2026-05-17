@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
 
 class UserController extends Controller
 {
@@ -43,26 +42,29 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // Update user Information
         // Validation
         $request->validate([
             'name' => 'required',
             'email' => 'required | email | unique:users',
             'password' => 'required | min:6 | confirmed',
+            'profile_picture' => 'image|mimes:jpeg,png,jpg',
         ]);
 
-        // Add user to DB
+        // Save user to DB first (Spatie needs an existing model ID to attach media)
         $user = new User();
-
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
         $user->save();
 
-        if ($the_user = $user->save()) {
-            return redirect()->route('admin.users.create')->with('success', 'User created successfully');
-        } else {
-            return redirect()->route('admin.users.create')->with('error', 'User creation failed');
+        // Attach profile picture after save so Spatie has the model ID
+        if ($request->hasFile('profile_picture') && $request->file('profile_picture')->isValid()) {
+            $user->addMedia($request->file('profile_picture'))
+                ->toMediaCollection('profile_picture');
         }
+
+        return redirect()->route('admin.users.create')->with('success', 'User created successfully');
     }
 
     /**
@@ -88,14 +90,32 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Update User
+        // Update User to DB
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|min:6|confirmed',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
+        ]);
+
         $user = User::find($id);
+
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = $request->password;
-        $user->save();
 
-        if ($the_user = $user->save()) {
+        // Only update password if a new one was provided
+        if ($request->filled('password')) {
+            $user->password = $request->password;
+        }
+
+        // Handle profile picture — null-safe check, clear old before adding new
+        if ($request->hasFile('profile_picture') && $request->file('profile_picture')->isValid()) {
+            $user->clearMediaCollection('profile_picture'); // remove old image first
+            $user->addMedia($request->file('profile_picture'))
+                ->toMediaCollection('profile_picture');
+        }
+
+        if ($user->save()) {
             return redirect()->route('admin.users.edit', $id)->with('success', 'User updated successfully');
         } else {
             return redirect()->route('admin.users.edit', $id)->with('error', 'User update failed');
