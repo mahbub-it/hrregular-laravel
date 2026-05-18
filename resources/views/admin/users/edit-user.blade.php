@@ -30,59 +30,71 @@
             <!-- End of Error Notifications -->
 
             <h4>Update User</h4>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-2">
 
-                <!-- Image upload + form (combined so file input is inside the form) -->
-                <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data"
-                    class="d-contents w-100">
-                    @csrf
+            <!-- Image upload + form (combined so file input is inside the form) -->
+            <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data"
+                class="d-contents w-100">
+                @csrf
 
+                <div class="row">
 
+                    <div class="col-md-4 p-3">
+                        <div class="card h-100">
+                            <div class="card-body">
 
-                    <div class="card p-3">
-                        <div class="">
-                            <input name="name" type="text" placeholder="Username" class="form-control my-4 py-2"
-                                value="{{ $user->name }}">
-                            <input name="email" type="email" placeholder="Email Address" class="form-control my-4 py-2"
-                                value="{{ $user->email }}">
-                            <input name="password" type="password" placeholder="Password" class="form-control my-4 py-2"
-                                value="">
-                            <input name="password_confirmation" type="password" placeholder="Confirm Password"
-                                class="form-control my-4 py-2" value="">
-
-                            <p class="my-3">
                                 <label for="upload-image" class="form-label fw-semibold">Profile Picture</label>
                                 @php $mediaUrl = $user->getFirstMediaUrl('profile_picture'); @endphp
-                                <img id="image-preview"
-                                    src="{{ $mediaUrl ?: asset('images/default-avatar.png') }}"
-                                    alt="Profile Picture"
-                                    class="d-block img-fluid mb-2"
+                                <img id="image-preview" src="{{ $mediaUrl ?: asset('images/default-avatar.png') }}"
+                                    alt="Profile Picture" class="d-block img-fluid mb-2"
                                     style="width: 300px; height: 300px; object-fit: cover; border-radius: 8px;">
-                                <input class="form-control" type="file" name="profile_picture"
-                                    id="upload-image" accept="image/*">
-                            </p>
+                                <div class="input-group">
+                                    <input class="form-control" type="file" name="profile_picture" id="upload-image"
+                                        style="display: none;" accept="image/*">
+                                    <button class="btn btn-outline-secondary" type="button"
+                                        onclick="document.getElementById('upload-image').click()">Browse</button>
+                                </div>
 
-                            <script>
-                                document.getElementById('upload-image').addEventListener('change', function () {
-                                    const file = this.files[0];
-                                    if (file) {
-                                        const reader = new FileReader();
-                                        reader.onload = function (e) {
-                                            document.getElementById('image-preview').src = e.target.result;
-                                        };
-                                        reader.readAsDataURL(file);
-                                    }
-                                });
-                            </script>
-                            <button type="submit" class="btn btn-primary mt-2">Update User</button>
+                                <!-- Image preview script -->
+                                <script>
+                                    document.getElementById('upload-image').addEventListener('change', function () {
+                                        const file = this.files[0];
+                                        if (file) {
+                                            const reader = new FileReader();
+                                            reader.onload = function (e) {
+                                                document.getElementById('image-preview').src = e.target.result;
+                                            };
+                                            reader.readAsDataURL(file);
+                                        }
+                                    });
+                                </script>
 
+
+                            </div>
                         </div>
                     </div>
-                </form>
+                    <div class="col-md-6 p-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <input name="name" type="text" placeholder="Username" class="form-control my-4 py-2"
+                                    value="{{ $user->name }}">
+                                <input name="email" type="email" placeholder="Email Address" class="form-control my-4 py-2"
+                                    value="{{ $user->email }}">
+                                <input name="password" type="password" placeholder="Password" class="form-control my-4 py-2"
+                                    value="">
+                                <input name="password_confirmation" type="password" placeholder="Confirm Password"
+                                    class="form-control my-4 py-2" value="">
 
-            </div>
+                                <button type="submit" class="btn btn-primary mt-2">Update User</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
 
         </div>
+
     </div>
+
 
 @endsection
