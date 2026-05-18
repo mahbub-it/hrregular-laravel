@@ -554,4 +554,5 @@ LoginLink.addEventListener('click', () => {
 
 - composer require "spatie/laravel-medialibrary"
 - php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider"
- - php artisan migrate 13:26
+ - php artisan migrate
+ - login 15:44

@@ -4,11 +4,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\UserController;
-use App\Models\Country;
-use App\Models\Language;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Storage;
+
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -49,7 +47,8 @@ Route::group(['prefix' => 'admin'], function () {
 
 // Authentication Related Group for Guest User
 Route::group(['middleware' => 'guest'], function () {
-    Route::get('login', [AuthController::class, 'login']);
+    Route::get('login', [AuthController::class, 'login'])->name('login');
+    Route::post('login', [AuthController::class, 'login_post'])->name('login_post');
 });
 
 // Countries List Route

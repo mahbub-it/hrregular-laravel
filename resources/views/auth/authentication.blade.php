@@ -18,13 +18,13 @@
                 <h2 class="animation" style="--D:0; --S:21">Login</h2>
                 <form action="#">
                     <div class="input-box animation" style="--D:1; --S:22">
-                        <input type="text" required>
-                        <label for="">Username</label>
+                        <input type="email" name="email" required>
+                        <label for="email">Email</label>
                         <box-icon type='solid' name='user'></box-icon>
                     </div>
 
                     <div class="input-box animation" style="--D:2; --S:23">
-                        <input type="password" required>
+                        <input type="password" name="password" required>
                         <label for="">Password</label>
                         <box-icon name='lock-alt' type='solid'></box-icon>
                     </div>
