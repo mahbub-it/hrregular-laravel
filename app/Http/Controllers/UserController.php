@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -95,7 +96,6 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|min:6|confirmed',
-            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1024',
         ]);
 
         $user = User::find($id);
@@ -104,15 +104,14 @@ class UserController extends Controller
         $user->email = $request->email;
 
         // Only update password if a new one was provided
-        if ($request->filled('password')) {
+        if (!empty($request->password)) {
             $user->password = $request->password;
         }
 
         // Handle profile picture — null-safe check, clear old before adding new
-        if ($request->hasFile('profile_picture') && $request->file('profile_picture')->isValid()) {
-            $user->clearMediaCollection('profile_picture'); // remove old image first
-            $user->addMedia($request->file('profile_picture'))
-                ->toMediaCollection('profile_picture');
+        if (isset($request->profile_picture) && $request->file('profile_picture')) {
+            $user->clearMediaCollection('profile_picture');
+            $user->addMedia($request->file('profile_picture'))->toMediaCollection('profile_picture');
         }
 
         if ($user->save()) {
@@ -127,13 +126,37 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        // Delete User
+        // Delete User from user List
         $user = User::find($id);
+        $user->delete();
+        return redirect()->route('admin.users')->with('success', 'User deleted successfully');
+    }
 
-        if ($the_user = $user->delete()) {
-            return redirect()->route('admin.users')->with('success', 'User deleted successfully');
-        } else {
-            return redirect()->route('admin.users')->with('error', 'User deletion failed');
-        }
+    // Logout
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
+
+
+    // My Profile
+    public function myProfile()
+    {
+        $user = Auth::user();
+        return view('admin.users.my-profile', compact('user'));
+    }
+
+    // My Profile Update
+    public function myProfileUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = $request->password;
+        $user->save();
+        return redirect()->route('admin.myProfile')->with('success', 'Profile updated successfully');
     }
 }

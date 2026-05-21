@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('content')
-    {{-- {{ dd(auth()->user()->getMedia('profile_picture')[0]); }} --}}
+
     <div class="bg-light py-4">
         <div class="container">
 
@@ -29,7 +29,7 @@
             @endif
             <!-- End of Error Notifications -->
 
-            <h4>Update User</h4>
+            <h4>Update My Profile</h4>
 
             <!-- Image upload + form (combined so file input is inside the form) -->
             <form action="{{ route('admin.users.update', $user->id) }}" method="POST" enctype="multipart/form-data"
@@ -84,7 +84,7 @@
                                 <input name="password_confirmation" type="password" placeholder="Confirm Password"
                                     class="form-control my-4 py-2" value="">
 
-                                <button type="submit" class="btn btn-primary mt-2">Update User</button>
+                                <button type="submit" class="btn btn-primary mt-2">Update Profile</button>
 
                             </div>
                         </div>

@@ -12,19 +12,19 @@
                 <!-- SIDEBAR BRAND NAME START -->
                 <div class="sidebar-brand-name">
                     <h1 class="mb-0 f-16 f-w-500 text-white-shade mt-0" data-placement="bottom" data-toggle="tooltip"
-                        data-original-title="Worksuite">Worksuite
+                        data-original-title="DreamWebdev">DreamWebdev
                         <i class="icon-arrow-down icons pl-2"></i>
                     </h1>
                     <div class="mb-0 position-relative pro-name">
                         <span class="bg-light-green rounded-circle"></span>
                         <p class="f-13 text-lightest mb-0" data-placement="bottom" data-toggle="tooltip"
-                            data-original-title="Rhoda Beatty">Rhoda Beatty</p>
+                            data-original-title="{{ auth()->user()->name }}">{{ auth()->user()->name }}</p>
                     </div>
                 </div>
                 <!-- SIDEBAR BRAND NAME END -->
                 <!-- SIDEBAR BRAND LOGO START -->
                 <div class="sidebar-brand-logo">
-                    <img src="{{ asset('/assets/png/worksuite-logo.png') }}">
+                    <img src="{{ asset('/assets/png/dreamwebdev-logo.png') }}">
                 </div>
                 <!-- SIDEBAR BRAND LOGO END -->
             </div>
@@ -32,42 +32,36 @@
             <div class="dropdown-menu dropdown-menu-right sidebar-brand-dropdown ml-3"
                 aria-labelledby="dropdownMenuLink" tabindex="0">
                 <div class="d-flex justify-content-between align-items-center profile-box">
-                    <a href="1.html">
+                    <span>
                         <div class="profileInfo d-flex align-items-center mr-1 flex-wrap">
                             <div class="profileImg mr-2">
-                                <img class="h-100" src="https://i.pravatar.cc/300?u=admin@example.com"
-                                    alt="Rhoda Beatty">
+                                <img class="rounded-circle"
+                                    src="{{ auth()->user()->hasMedia('profile_picture') ? auth()->user()->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}"
+                                    alt="User Image">
                             </div>
                             <div class="ProfileData">
                                 <h3 class="f-15 f-w-500 text-dark" data-placement="bottom" data-toggle="tooltip"
-                                    data-original-title="Rhoda Beatty">Rhoda Beatty</h3>
-                                <p class="mb-0 f-12 text-dark-grey">Team Lead</p>
+                                    data-original-title="{{ auth()->user()->name }}">{{ auth()->user()->name }}</h3>
+                                <p class="mb-0 f-12 text-dark-grey">{{ auth()->user()->role }}</p>
                             </div>
                         </div>
-                    </a>
-                    <a href="profile-settings.html" data-toggle="tooltip" data-original-title="Profile Settings">
-                        <i class="side-icon bi bi-pencil-square"></i>
-                    </a>
+                    </span>
+                    <span>
+                        <i class="side-icon bi bi-person-circle"></i>
+                    </span>
                 </div>
 
                 <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark invite-member"
-                    href="javascript:;">
-                    <span>Invite member to Worksuite</span>
-                    <i class="side-icon bi bi-person-plus"></i>
+                    href="{{ route('admin.myProfile') }}" data-toggle="tooltip" data-original-title="Profile Settings">
+                    <span>My Profile Edit</span>
+                    <i class="side-icon bi bi-pencil-square"></i>
                 </a>
 
-                <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark"
-                    href="javascript:;">
-                    <label for="dark-theme-toggle">Dark Mode</label>
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="dark-theme-toggle">
-                        <label class="custom-control-label f-14" for="dark-theme-toggle"></label>
-                    </div>
-                </a>
-                <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark"
-                    href="logout.html" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                    Logout <i class="side-icon bi bi-power"></i>
+                <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark mt-2">
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-danger">Logout</button>
+                    </form> <i class="side-icon bi bi-power"></i>
                 </a>
             </div>
         </div>

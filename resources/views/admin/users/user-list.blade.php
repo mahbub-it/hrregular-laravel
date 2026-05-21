@@ -64,8 +64,8 @@
 
                         <div class="text-center position-relative" style="z-index: 1;">
                             <div class="avatars p-3">
-                                <!-- Appending a random query parameter to bypass browser cache -->
-                                <img class="rounded-circle"
+                                <!-- Appending Profile Image -->
+                                <img class="rounded-circle object-fit-cover" style="width: 200px; height: 200px;"
                                     src="{{ $user->hasMedia('profile_picture') ? $user->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}"
                                     alt="User Image">
                             </div>
@@ -93,22 +93,25 @@
                             <a href="{{ route('admin.users.edit', $user->id) }}"
                                 class="btn btn-primary py-1 px-4 link-light">Edit</a>
 
-                            <a href="{{ route('admin.users.destroy', $user->id) }}" class="btn btn-danger py-1 px-4 link-light"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</a>
+                            <a href="javascript:void(0)" class="btn btn-danger py-1 px-4 link-light" data-bs-toggle="modal"
+                                data-bs-target="#deleteModal{{ $user->id }}">Delete</a>
 
                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <!-- Modal -->
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                                    aria-hidden="true">
+                                <div class="modal fade" id="deleteModal{{ $user->id }}" tabindex="-1"
+                                    aria-labelledby="deleteModalLabel{{ $user->id }}" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete User</h1>
+                                                <h1 class="modal-title fs-5" id="deleteModalLabel{{ $user->id }}">Delete User
+                                                </h1>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
+
+                                            <!-- This current user delete -->
                                             <div class="modal-body">
                                                 Are you sure you want to delete {{ $user->name }} this user?
                                             </div>

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Admin Dashboard Related Group
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     // Dashboard Route
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
@@ -43,6 +43,11 @@ Route::group(['prefix' => 'admin'], function () {
 
     // Employee List Route
     Route::get('employees', [EmployeeController::class, 'index'])->name('admin.employees');
+
+    // My Profile Route
+    Route::get('my-profile', [UserController::class, 'myProfile'])->name('admin.myProfile');
+    // My Profile update
+    Route::post('my-profile/update', [UserController::class, 'myProfileUpdate'])->name('admin.myProfileUpdate');
 });
 
 // Authentication Related Group for Guest User
@@ -50,6 +55,10 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'login_post'])->name('login_post');
 });
+
+// Logout Route
+Route::post('logout', [UserController::class, 'logout'])->name('logout');
+
 
 // Countries List Route
 Route::get('users', function () {

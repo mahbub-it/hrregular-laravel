@@ -555,4 +555,6 @@ LoginLink.addEventListener('click', () => {
 - composer require "spatie/laravel-medialibrary"
 - php artisan vendor:publish --provider="Spatie\MediaLibrary\MediaLibraryServiceProvider"
  - php artisan migrate
- - login 15:44
+ - php artisan storage:link
+
+ - dd(auth()->user()->getMedia('profile_picture')[0]->getUrl());

@@ -197,10 +197,15 @@
                 <!-- LOGOUT START -->
                 <li data-toggle="tooltip" data-placement="top" title="Logout">
                     <div class="logout_box">
-                        <a class="d-block header-icon-box" href="javascript:;" onclick="event.preventDefault();
-                    document.getElementById('logout-form').submit();">
-                            <i class="fa fa-power-off f-16 text-dark-grey"></i>
+                        <a class="d-block header-icon-box f-15 text-dark">
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class=""><i class="fa fa-power-off f-16 text-danger"></i></button>
+                            </form>
                         </a>
+
+                        <!-- <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark mt-2"> -->
+
                     </div>
                 </li>
                 <!-- LOGOUT END -->

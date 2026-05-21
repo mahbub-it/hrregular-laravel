@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login & Signup Form</title>
     <link rel="stylesheet" href="{{ asset('signup/signup.css') }}">
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"> -->
 
 </head>
 
@@ -15,8 +16,10 @@
         <div class="image-custom">
             <div class="curved-shape2"></div>
             <div class="form-box Login">
+
                 <h2 class="animation" style="--D:0; --S:21">Login</h2>
-                <form action="#">
+                <form action="{{ route('login_post') }}" method="POST">
+                    @csrf
                     <div class="input-box animation" style="--D:1; --S:22">
                         <input type="email" name="email" required>
                         <label for="email">Email</label>
@@ -25,7 +28,7 @@
 
                     <div class="input-box animation" style="--D:2; --S:23">
                         <input type="password" name="password" required>
-                        <label for="">Password</label>
+                        <label for="password">Password</label>
                         <box-icon name='lock-alt' type='solid'></box-icon>
                     </div>
 
@@ -40,6 +43,17 @@
             </div>
 
             <div class="info-content Login">
+                <div class="alert alert-danger" style="color: red; margin-bottom: 10px;">
+                    @if ($errors->any())
+
+                        @foreach ($errors->all() as $error)
+                            <div class="alert alert-danger" style="color: red;">
+                                Error:{{ $error }}
+                            </div>
+                        @endforeach
+
+                    @endif
+                </div>
                 <h2 class="animation" style="--D:0; --S:20">WELCOME BACK!</h2>
                 <p class="animation" style="--D:1; --S:21">We are happy to have you with us again. If you need anything,
                     we are here to help.</p>
