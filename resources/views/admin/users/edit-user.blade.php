@@ -43,10 +43,11 @@
                             <div class="card-body">
 
                                 <label for="upload-image" class="form-label fw-semibold">Profile Picture</label>
-                                @php $mediaUrl = $user->getFirstMediaUrl('profile_picture'); @endphp
-                                <img id="image-preview" src="{{ $mediaUrl ?: asset('images/default-avatar.png') }}"
+                                <img id="image-preview" src="{{ $user->getFirstMediaUrl('profile_picture') }}"
                                     alt="Profile Picture" class="d-block img-fluid mb-2"
-                                    style="width: 300px; height: 300px; object-fit: cover; border-radius: 8px;">
+                                    style="width: 300px; height: 300px; object-fit: cover; border-radius: 8px;"
+                                    alt="User Image"
+                                    onerror="this.onerror=null; this.src='{{ asset('images/default-avatar.png') }}'">
                                 <div class="input-group">
                                     <input class="form-control" type="file" name="profile_picture" id="upload-image"
                                         style="display: none;" accept="image/*">
