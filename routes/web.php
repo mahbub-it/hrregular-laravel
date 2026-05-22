@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Admin Dashboard Related Group
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'can:manages_all']], function () {
     // Dashboard Route
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
@@ -50,6 +50,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
     Route::post('my-profile/update', [UserController::class, 'myProfileUpdate'])->name('admin.myProfileUpdate');
 });
 
+// Employee Dashboard Related Group
+Route::group(['prefix' => 'employee', 'middleware' => 'auth'], function () {
+    // Dashboard Route
+    Route::get('dashboard', [EmployeeController::class, 'index'])->name('employee.dashboard');
+});
+
 // Authentication Related Group for Guest User
 Route::group(['middleware' => 'guest'], function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
@@ -61,11 +67,10 @@ Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
 
 // Countries List Route
-Route::get('users', function () {
+// Route::get('users', function () {
 
-    $users = User::find(1);
+//     // $users = User::find(1);
 
-    // dd($users->employee->designation->designation_name);  
+//     // dd($users->employee->designation->designation_name);  
 
-});
-
+// });

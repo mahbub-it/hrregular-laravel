@@ -565,3 +565,11 @@ LoginLink.addEventListener('click', () => {
  - php artisan storage:link
 
  - <img class="rounded-circle object-fit-cover" style="width: 200px; height: 200px;" src="{{ $user->hasMedia('profile_picture') ? $user->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}" onerror="this.onerror=null; this.src='{{ asset('images/default-avatar.png') }}'"alt="User Image">
+
+ <!-- /////Store it securely in WSL (Recommended)////// -->
+ # 1. Enable the permanent store helper
+- git config --global credential.helper store
+
+# 2. Run your pull command to trigger the final password prompt
+- git pull origin main
+
