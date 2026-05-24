@@ -24,7 +24,17 @@ class AuthController extends Controller
         ]);
 
         if (Auth::attempt($data)) {
-            return redirect()->route('admin.dashboard');
+            $user = Auth::user();
+            
+            // Redirect based on user role
+            if ($user->role === 'administrator') {
+                return redirect()->route('admin.dashboard');
+            } elseif ($user->role === 'employee') {
+                return redirect()->route('employee.dashboard');
+            }
+            
+            // Default redirect if role doesn't match
+            return redirect()->route('employee.dashboard');
         } else {
             return redirect()->back()->with('error', 'Invalid credentials');
         }

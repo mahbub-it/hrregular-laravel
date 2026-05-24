@@ -80,17 +80,17 @@
                                     value="">
                                 <input name="password_confirmation" type="password" placeholder="Confirm Password"
                                     class="form-control my-4 py-2" value="">
-
                                 <div class="mb-3">
                                     <label for="userRole" class="form-label fs-6 fw-semibold">Select Role</label>
-                                    <select class="form-select" id="userRole" aria-label="User Role">
-                                        <option value="" disabled selected>Open this select menu</option>
-                                        <option value="employee">Employee</option>
-                                        <option value="administrator">Administrator</option>
+                                    <select class="form-select" id="userRole" name="role" aria-label="User Role">
+                                        <option value="" disabled {{ old('role') ? '' : 'selected' }}>-- Select a Role --
+                                        </option>
+                                        <option value="employee" {{ old('role') == 'employee' ? 'selected' : '' }}>Employee
+                                        </option>
+                                        <option value="administrator" {{ old('role') == 'administrator' ? 'selected' : '' }}>
+                                            Administrator</option>
                                     </select>
                                 </div>
-
-
                                 <button type="submit" class="btn btn-primary mt-2">Create User</button>
                             </div>
                         </div>

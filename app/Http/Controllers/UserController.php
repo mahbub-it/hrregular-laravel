@@ -47,9 +47,10 @@ class UserController extends Controller
         // Validation
         $request->validate([
             'name' => 'required',
-            'email' => 'required | email | unique:users',
-            'password' => 'required | min:6 | confirmed',
-            'profile_picture' => 'image|mimes:jpeg,png,jpg',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6|confirmed',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg',
+            'role' => 'required|in:employee,administrator',
         ]);
 
         // Save user to DB first (Spatie needs an existing model ID to attach media)
@@ -57,6 +58,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = $request->password;
+        $user->role = $request->role;
         $user->save();
 
         // Attach profile picture after save so Spatie has the model ID
