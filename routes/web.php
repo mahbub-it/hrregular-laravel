@@ -65,12 +65,3 @@ Route::group(['middleware' => 'guest'], function () {
 // Logout Route
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
-
-// Countries List Route
-// Route::get('users', function () {
-
-//     // $users = User::find(1);
-
-//     // dd($users->employee->designation->designation_name);  
-
-// });
