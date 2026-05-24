@@ -60,8 +60,12 @@
                 <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark mt-2">
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
-                        <button type="submit" class="btn btn-danger">Logout</button>
-                    </form> <i class="side-icon bi bi-power"></i>
+                        <button type="button" class=" f-16 btn btn-danger border-0 d-block" data-bs-toggle="modal"
+                            data-bs-target="#logoutModal">
+                            <i class="side-icon bi bi-power"></i> Log Out
+                        </button>
+
+                    </form>
                 </a>
             </div>
         </div>
@@ -90,7 +94,7 @@
                 </li>
 
                 <!-- NAV ITEM - User COLLAPASE MENU -->
-                <li class="accordionItem">
+                <li class="accordionItem closeIt">
 
                     <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading " title="HR">
 
@@ -106,19 +110,7 @@
 
                     <div class="accordionItemContent">
                         <!-- COLLAPSE - INFORMATION -->
-                        <a href="" class="f-14 text-lightest" href="employees.html" title="Employees">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-person-fill-add" viewBox="0 0 16 16">
-                                <path
-                                    d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                                <path
-                                    d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                            </svg>
-                            <span class="pl-1">User</span>
-                        </a>
-                        <!-- COLLAPSE - INFORMATION -->
-                        <a href="{{ route('admin.users') }}" class="f-14 text-lightest" href="leaves.html"
-                            title="Leaves">
+                        <a href="{{ route('admin.users') }}" class="f-14 text-lightest" title="Leaves">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
                                 class="bi bi-person-lines-fill" viewBox="0 0 16 16">
                                 <path
@@ -129,22 +121,16 @@
                         <a href="{{ route('admin.users.create') }}" class="f-14 text-lightest" href="leaves.html"
                             title="Leaves">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                                class="bi bi-person-lines-fill" viewBox="0 0 16 16">
+                                class="bi bi-person-fill-add" viewBox="0 0 16 16">
                                 <path
-                                    d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z" />
+                                    d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
+                                <path
+                                    d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
                             </svg>
-                            <span class="pl-1">User Create</span>
+                            <span class="pl-1">Create A New User</span>
                         </a>
                     </div>
                 </li>
-
-
-
-
-
-
-
-
 
                 <!-- NAV ITEM - MY CALENDAR -->
                 <li class="accordionItem closeIt">

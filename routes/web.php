@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Admin Dashboard Related Group
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'can:manages_all']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'can:manage_all']], function () {
     // Dashboard Route
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 

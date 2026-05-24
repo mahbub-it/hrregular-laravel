@@ -25,11 +25,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        Gate::define('manages_all', function (User $user) {
-            if (Employee::where('user_id', $user->id)->exists()) {
-                return Response::deny('You are not authorized...');
-            }
-            return Response::allow();
+        Gate::define('manage_all', function (User $user) {
+            return 0 == count(Employee::where('user_id', $user->id)->get());
         });
     }
 }

@@ -93,7 +93,7 @@
             <span id="timer-clock">
             </span>
 
-            <ul>
+            <ul class="d-flex align-items-center">
                 <!-- SEARCH START -->
                 <li data-toggle="tooltip" data-placement="top" title="Search" class="d-none d-sm-block">
                     <div class="d-flex align-items-center">
@@ -194,18 +194,18 @@
                     </div>
                 </li>
                 <!-- NOTIFICATIONS END -->
-                <!-- LOGOUT START -->
+
+                <!-- LOGOUT START With Bootstrap Model -->
                 <li data-toggle="tooltip" data-placement="top" title="Logout">
                     <div class="logout_box">
-                        <a class="d-block header-icon-box f-15 text-dark">
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button type="submit" class=""><i class="fa fa-power-off f-16 text-danger"></i></button>
-                            </form>
-                        </a>
-
-                        <!-- <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark mt-2"> -->
-
+                        <form action="{{ route('logout') }}" method="POST" id="logout-form">
+                            @csrf
+                        </form>
+                        <button type="button" class=" f-16 btn btn-danger border-0 d-block" data-bs-toggle="modal"
+                            data-bs-target="#logoutModal">
+                            <i class="fa fa-power-off f-16 text-white"></i>
+                            Log Out
+                        </button>
                     </div>
                 </li>
                 <!-- LOGOUT END -->
@@ -232,6 +232,26 @@
     <script src="{{ asset('assets/js/moment-timezone-with-data.min.js') }}"></script>
     <!-- Bootstrap JS Bundle CDN -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"></script>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to logout?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger"
+                        onclick="document.getElementById('logout-form').submit()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 
