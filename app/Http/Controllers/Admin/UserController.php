@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -138,9 +139,12 @@ class UserController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
-        return redirect()->route('login');
+
+        return redirect()->route('login')->with('success', 'Please log in again.');
     }
 
 

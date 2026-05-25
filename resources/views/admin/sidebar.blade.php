@@ -42,7 +42,7 @@
                             <div class="ProfileData">
                                 <h3 class="f-15 f-w-500 text-dark" data-placement="bottom" data-toggle="tooltip"
                                     data-original-title="{{ auth()->user()->name }}">{{ auth()->user()->name }}</h3>
-                                <p class="mb-0 f-12 text-dark-grey">{{ auth()->user()->role }}</p>
+                                <p class="mb-0 f-12 text-dark-grey">{{ auth()->user()->role }}</p> 
                             </div>
                         </div>
                     </span>
@@ -58,7 +58,7 @@
                 </a>
 
                 <a class="dropdown-item d-flex justify-content-between align-items-center f-15 text-dark mt-2">
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('admin.logout') }}" method="POST">
                         @csrf
                         <button type="button" class=" f-16 btn btn-danger border-0 d-block" data-bs-toggle="modal"
                             data-bs-target="#logoutModal">

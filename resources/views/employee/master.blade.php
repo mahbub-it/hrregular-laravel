@@ -196,7 +196,7 @@
                 <!-- LOGOUT START With Bootstrap Model -->
                 <li data-toggle="tooltip" data-placement="top" title="Logout">
                     <div class="logout_box">
-                        <form action="{{ route('admin.logout') }}" method="POST" id="logout-form">
+                        <form action="{{ route('employee.logout') }}" method="POST" id="logout-form">
                             @csrf
                         </form>
                         <button type="button" class=" f-16 btn btn-danger border-0 d-block" data-bs-toggle="modal"
@@ -214,7 +214,7 @@
     <!-- HEADER END -->
 
     <!-- SIDEBAR START -->
-    @include('admin.sidebar')
+    @include('employee.sidebar')
     <!-- SIDEBAR END -->
 
 
