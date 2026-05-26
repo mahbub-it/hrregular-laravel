@@ -77,7 +77,7 @@
                 <!-- NAV ITEM - DASHBOARD -->
                 <li class="accordionItem">
 
-                    <a href="{{ route('employee.dashboard') }}" class="nav-item text-white f-15 sidebar-text-color"
+                    <a href="{{ route('employee.dashboard') }}" class="nav-item text-lightest f-15 sidebar-text-color {{ route('employee.dashboard') == url()->current() ? 'active' : '' }}"
                         title="Dashboard">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-house" viewBox="0 0 16 16">
@@ -87,16 +87,12 @@
                                 d="M7.293 1.5a1 1 0 0 1 1.414 0l6.647 6.646a.5.5 0 0 1-.708.708L8 2.207 1.354 8.854a.5.5 0 1 1-.708-.708L7.293 1.5z" />
                         </svg>
                         <span class="pl-3">Dashboard</span>
-
                     </a>
-
-
                 </li>
 
-                <!-- NAV ITEM - User COLLAPASE MENU -->
-                <li class="accordionItem">
-
-                    <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading" title="HR">
+                <!-- NAV ITEM - HR COLLAPASE MENU -->
+                <li class="accordionItem {{ request()->is('employee/leaves*') || request()->is('employee/attendance*') || request()->is('employee/holidays*') ? 'openIt' : 'closeIt' }}">
+                    <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading {{ request()->is('employee/leaves*') || request()->is('employee/attendance*') || request()->is('employee/holidays*') ? 'active' : '' }}" title="HR">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
                     <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
                 </svg>
@@ -105,14 +101,14 @@
 
                     <div class="accordionItemContent">
                         <!-- Employee LEAVES INFORMATION -->
-                        <a href="{{ route('employee.leaves') }}" class="f-14 text-lightest" title="Leaves">
+                        <a href="{{ route('employee.leaves')}}" class="f-14 text-lightest {{ route('employee.leaves') == url()->current() ? 'active' : '' }}" title="Leaves">
                             <span class="pl-1">Leaves</span>
                         </a>
                     </div>
 
                     <div class="accordionItemContent">
                         <!-- Employee ATTENDANCE INFORMATION -->
-                         <a href="{{ route('employee.attendance') }}" class="f-14 text-lightest" title="Attendance">                       
+                         <a href="{{ route('employee.attendance') }}" class="f-14 text-lightest {{ route('employee.attendance') == url()->current() ? 'active' : '' }}" title="Attendance">                       
                             <span class="pl-1">Attendance</span>
                         </a>
 
@@ -120,7 +116,7 @@
 
                     <div class="accordionItemContent">
                         <!-- Employee HOLIDAYS INFORMATION -->
-                        <a href="{{ route('employee.holidays') }}" class="f-14 text-lightest" title="Holidays">
+                        <a href="{{ route('employee.holidays') }}" class="f-14 text-lightest {{ route('employee.holidays') == url()->current() ? 'active' : '' }}" title="Holidays">
                             <span class="pl-1">Holidays</span>
                         </a>        
                     </div>

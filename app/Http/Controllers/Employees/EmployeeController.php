@@ -16,25 +16,25 @@ class EmployeeController extends Controller
     public function index()
     {
         // Employee Dashboard
-        return view('employee.employee.index');
+        return view('employee.employee.dashboard');
     }
 
     public function leaves()
     {
         // Employee Leaves
-        return view('employee.employee.index');
+        return view('employee.employee.leaves');
     }
 
     public function attendance()
     {
         // Employee Attendance
-        return view('employee.employee.index');
+        return view('employee.employee.attendance');
     }
 
     public function holidays()
     {
         // Employee Holidays
-        return view('employee.employee.index');
+        return view('employee.employee.holidays');
     }
 
     /**
