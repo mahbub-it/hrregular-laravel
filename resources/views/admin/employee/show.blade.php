@@ -1,112 +1,394 @@
 @extends('admin.master')
+
 @section('content')
+
+
     <!-- BODY WRAPPER START -->
-    <div class="clearfix body-wrapper">
+    <div class="clearfix body-wrapper mt-0 p-5">
 
 
         <!-- MAIN CONTAINER START -->
-        <section class="mb-5 main-container bg-additional-grey mb-sm-0" id="fullscreen">
+        <section class="mb-0 mt-0 p-5 pb-0 main-container bg-additional-grey" id="fullscreen">
 
-            <div class="preloader-container justify-content-center align-items-center" style="display: none;">
-                <div class="spinner-border" role="status" aria-hidden="true"></div>
-            </div>
+            <h4 class="mb-3 text-darkest-grey py-3">Profile Details of <span
+                    class="text-darkest-grey fst-italic fw-bold">{{ $employee->user->name }}</span></h4>
+
+            <div class="d-lg-flex">
+
+                <div class="w-100 py-0 py-lg-3 py-md-0">
+                    <!-- ROW START -->
+                    <div class="row">
+                        <!--  USER CARDS START -->
+                        <div class="col-lg-12 col-md-12 mb-4 mb-xl-0 mb-lg-4 mb-md-0">
+                            <div class="row">
+                                <div class="col-xl-7 col-md-6 mb-4 mb-lg-0">
+
+                                    <div class="card border-0 b-shadow-4">
+                                        <div class="card-horizontal align-items-center">
+                                            <div class="card-img">
+                                                <img class="" src="https://i.pravatar.cc/300?u=kozey.thalia@example.net4"
+                                                    alt="">
+                                            </div>
+                                            <div class="card-body border-0 pl-0">
+                                                <div class="row">
+                                                    <div class="col-10">
+                                                        <h4 class="card-title f-15 f-w-500 text-darkest-grey mb-0">
+                                                            Mr. Shane Lindgren IV
+                                                        </h4>
+                                                    </div>
+                                                    <div class="col-2 text-right">
+                                                        <div class="dropdown">
+                                                            <button
+                                                                class="btn f-14 px-0 py-0 text-dark-grey dropdown-toggle"
+                                                                type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                                aria-expanded="false">
+                                                                <i class="fa fa-ellipsis-h"></i>
+                                                            </button>
+
+                                                            <div class="dropdown-menu dropdown-menu-right border-grey rounded b-shadow-4 p-0"
+                                                                aria-labelledby="dropdownMenuLink" tabindex="0">
+                                                                <a class="dropdown-item openRightModal"
+                                                                    href="19/edit.html">Edit</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <p class="f-12 font-weight-normal text-dark-grey mb-0">
+                                                    Senior
+                                                    &bull;
+                                                    Finance
+                                                    <span class="card-text f-12 text-dark-grey m-lg-2">| User Role:
+                                                        Employee</span>
+                                                </p>
+
+
+                                                <p class="card-text f-11 text-lightest mb-1">Last login at
+                                                    --
+                                                </p>
+
+
+                                                <div class="card-footer bg-white border-top-grey pl-0">
+                                                    <div class="d-flex flex-wrap justify-content-between">
+                                                        <span>
+                                                            <label class="f-11 text-dark-grey mb-12 " for="usr">Open
+                                                                Tasks</label>
+                                                            <p class="mb-0 f-18 f-w-500">3</p>
+                                                        </span>
+                                                        <span>
+                                                            <label class="f-11 text-dark-grey mb-12 "
+                                                                for="usr">Projects</label>
+                                                            <p class="mb-0 f-18 f-w-500">6</p>
+                                                        </span>
+                                                        <span>
+                                                            <label class="f-11 text-dark-grey mb-12 " for="usr">Hours
+                                                                Logged</label>
+                                                            <p class="mb-0 f-18 f-w-500">0</p>
+                                                        </span>
+                                                        <span>
+                                                            <label class="f-11 text-dark-grey mb-12 "
+                                                                for="usr">Tickets</label>
+                                                            <p class="mb-0 f-18 f-w-500">0</p>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="card bg-white border-0 b-shadow-4 mt-4">
+                                        <div class="card-header bg-white border-0  d-flex justify-content-between pt-4">
+                                            <h4 class="f-18 f-w-500 mb-0">About</h4>
 
 
 
-            <div class="filter-box">
-                <!-- FILTER START -->
-                <form action="#" id="filter-form">
-                    <div class="d-lg-flex d-md-flex d-block flex-wrap filter-box bg-white client-list-filter">
-                        <!-- Employee filter Start -->
-                        <div class="select-box py-2 d-flex pr-2 border-right-grey border-right-grey-sm-0">
-                            <p class="mb-0 pr-2 f-14 text-dark-grey d-flex align-items-center">Employee</p>
+                                        </div>
 
-                        </div>
+                                        <div class="card-body pt-2 ">
+                                            <div>I am super human</div>
+                                        </div>
+                                    </div>
 
 
+                                    <div class="card bg-white border-0 b-shadow-4  mt-4">
+                                        <div class="card-header bg-white border-0  d-flex justify-content-between pt-4">
+                                            <h4 class="f-18 f-w-500 mb-0">Profile Info</h4>
 
-                        <!-- SEARCH BY TASK START -->
-                        <div class="task-search d-flex  py-1 px-lg-3 px-0 border-right-grey align-items-center">
 
-                            <div class="input-group bg-grey rounded">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text border-0 bg-additional-grey">
-                                        <svg class="svg-inline--fa fa-search fa-w-16 f-13 text-dark-grey" aria-hidden="true"
-                                            focusable="false" data-prefix="fa" data-icon="search" role="img"
-                                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg="">
-                                            <path fill="currentColor"
-                                                d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z">
-                                            </path>
-                                        </svg>
-                                    </span>
+
+                                        </div>
+
+                                        <div class="card-body pt-2 ">
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Employee ID</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">EMP-10</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Full Name</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">Mr. Shane
+                                                    Lindgren IV</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Designation</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">Senior</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Department</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">Finance</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-block d-lg-flex d-md-flex">
+                                                <p class="mb-0 text-lightest f-14 w-30 d-inline-block ">
+                                                    Gender</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70">
+                                                    <i class="bi bi-gender-male"></i> Male
+                                                </p>
+                                            </div>
+
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Work Anniversary</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">2 months from
+                                                    now</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Date of Birth</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Email</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">
+                                                    kozey.thalia@example.net4</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Mobile</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Slack Member ID</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Hourly Rate</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">$19</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Address</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">72756 Cole
+                                                    Shoals
+                                                    Gustchester, MI 51972</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Skills</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Language</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">English</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Probation End Date</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Notice Period Start Date
+                                                </p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Notice Period End Date</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Marital Status</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">Single</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Business Address</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">Worksuite</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Marriage Anniversary Date
+                                                </p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Employment Type</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+
+
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Joining Date</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">09-06-2025</p>
+                                            </div>
+
+                                            <div class="col-12 px-0 pb-3 d-lg-flex d-md-flex d-block">
+                                                <p class="mb-0 text-lightest f-14 w-30  ">Exit Date</p>
+                                                <p class="mb-0 text-dark-grey f-14 w-70 text-wrap ">--</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
                                 </div>
-                                <input type="text" class="form-control f-14 p-1 border-additional-grey"
-                                    id="search-text-field" placeholder="Start typing to search" autocomplete="off">
+
+                                <div class="col-xl-5 col-lg-6 col-md-6">
+
+                                    <div class="card bg-white border-0 b-shadow-4 mb-4">
+                                        <div class="card-header bg-white border-0  d-flex justify-content-between pt-4">
+                                            <h4 class="f-18 f-w-500 mb-0">Appreciation</h4>
+
+
+
+                                        </div>
+
+                                        <div class="card-body pt-2 ">
+                                            <div class="align-items-center d-flex flex-column text-lightest p-20 w-100">
+                                                <i class="fa fa-medal f-21 w-100"></i>
+
+                                                <div class="f-15 mt-4">
+                                                    - No record found. -
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card bg-white border-0 b-shadow-4 mb-4">
+
+                                        <div class="card-body ">
+                                            <div class="d-flex justify-content-between">
+
+
+                                                <div class="col-12">
+                                                    <p class="f-14 text-dark-grey">Reporting Team</p>
+                                                    --
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-xl-6 col-sm-12 mb-4">
+                                            <div
+                                                class="bg-white p-20 rounded b-shadow-4 d-flex justify-content-between align-items-center">
+                                                <div class="d-block ">
+                                                    <h5 class="f-15 f-w-500 mb-20 text-darkest-grey">Late Attendance
+                                                        <i class="fa fa-question-circle" data-toggle="popover"
+                                                            data-placement="top" data-content="This Month" data-html="true"
+                                                            data-trigger="hover"></i>
+                                                    </h5>
+                                                    <div class="d-flex">
+                                                        <p class="mb-0 f-15 font-weight-bold text-blue text-primary d-grid">
+                                                            <span id="">0</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-block">
+                                                    <i class="fa fa-map-marker-alt text-lightest f-18"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6 col-sm-12 mb-4">
+                                            <div
+                                                class="bg-white p-20 rounded b-shadow-4 d-flex justify-content-between align-items-center">
+                                                <div class="d-block ">
+                                                    <h5 class="f-15 f-w-500 mb-20 text-darkest-grey">Leaves Taken
+                                                        <i class="fa fa-question-circle" data-toggle="popover"
+                                                            data-placement="top" data-content="This Month" data-html="true"
+                                                            data-trigger="hover"></i>
+                                                    </h5>
+                                                    <div class="d-flex">
+                                                        <p class="mb-0 f-15 font-weight-bold text-blue text-primary d-grid">
+                                                            <span id="">0</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="d-block">
+                                                    <i class="fa fa-sign-out-alt text-lightest f-18"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 mb-4">
+                                            <div class="card bg-white border-0 b-shadow-4 pb-3">
+                                                <div
+                                                    class="card-header bg-white border-0  d-flex justify-content-between pt-4">
+                                                    <h4 class="f-18 f-w-500 mb-0">Tasks</h4>
+
+
+
+                                                </div>
+
+                                                <div class="card-body p-0 ">
+
+                                                    <div class="m-auto" style="height: 250px; width: 250px">
+                                                        <canvas id="task-chart" height="250" width="250"></canvas>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-4">
+                                                <div class="card bg-white border-0 b-shadow-4 pb-3">
+                                                    <div
+                                                        class="card-header bg-white border-0  d-flex justify-content-between pt-4">
+                                                        <h4 class="f-18 f-w-500 mb-0">Tickets</h4>
+
+
+
+                                                    </div>
+
+                                                    <div class="card-body p-0 ">
+                                                        <div class="text-center text-lightest p-20" style="height: 250px">
+
+                                                            <i class="side-icon f-21 bi bi-pie-chart"></i>
+                                                            <div class="f-15 mt-4">
+                                                                - Not enough data -
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
                             </div>
+                            <!--  USER CARDS END -->
 
                         </div>
-                        <!-- SEARCH BY TASK END -->
+                        <!-- ROW END -->
                     </div>
-                </form>
-
-            </div>
-
-
-            <!-- PAGE TITLE START -->
-            <div class="page-title d-block d-lg-none">
-                <div class="page-heading">
-                    <h2 class="mb-0 pr-3 text-dark f-18 font-weight-bold d-flex align-items-center">
-                        <span class="d-inline-block text-truncate mw-300">Employees</span>
-
-                        <span class="text-lightest f-12 f-w-500 mx-2 mw-250 text-truncate">
-                            <a href="dashboard.html" class="text-lightest">Home</a> •
-                            Employees Informations
-                        </span>
-                    </h2>
                 </div>
             </div>
-            <!-- PAGE TITLE END -->
-
-            <!-- CONTENT WRAPPER START -->
-            <div class="content-wrapper">
-
-                <!-- Task Box Start -->
-                <div class="d-flex flex-column w-tables rounded mt-3 bg-white table-responsive">
-
-                    <div id="employees-table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
-                        <div class="row">
-                            <div class="col-sm-12">
-
-                                <div class="table-responsive">
-                                    <!-- Single Employee Information -->
-                                    <h1>{{ $employee->first_name }} {{ $employee->last_name }}</h1>
-                                    <p>Email: {{ $employee->email }}</p>
-                                    <p>Phone: {{ $employee->phone }}</p>
-                                    <p>Address: {{ $employee->address }}</p>
-                                    <p>City: {{ $employee->city }}</p>
-                                    <p>State: {{ $employee->state }}</p>
-                                    <p>Zip: {{ $employee->zip }}</p>
-                                    <p>Country: {{ $employee->country }}</p>
-                                    <p>Status: {{ $employee->status }}</p>
-                                    <p>Created At: {{ $employee->created_at }}</p>
-                                    <p>Updated At: {{ $employee->updated_at }}</p>
-                                </div>
-                                <div id="employees-table_processing" class="dataTables_processing card"
-                                    style="display: none;">Processing...</div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-                <!-- Task Box End -->
-            </div>
-            <!-- CONTENT WRAPPER END -->
-
 
 
         </section>
         <!-- MAIN CONTAINER END -->
     </div>
-    <!-- BODY WRAPPER END -->
+
+
 @endsection

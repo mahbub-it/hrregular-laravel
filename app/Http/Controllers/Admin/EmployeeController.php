@@ -43,7 +43,7 @@ class EmployeeController extends Controller
     public function show(string $id)
     {
         // Single Employee Information 
-        $employee = Employee::with(['user.media', 'designation'])->find($id);
+        $employee = Employee::findOrFail($id);
         if ($employee) {
             return view('admin.employee.show', [
                 'employee' => $employee,
