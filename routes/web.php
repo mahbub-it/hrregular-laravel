@@ -3,58 +3,59 @@
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Admin; 
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\Employees;
 use App\Http\Controllers\EmployeeController;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+})->name('homepage');
 
-// Route::middleware('auth')->group(function () {
-//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-// });
 
 // Admin Dashboard Related Group
 Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'can:manage_all']], function () {
-    // Dashboard Route
+    // Admin Dashboard Route
     Route::get('dashboard', [Admin\AdminController::class, 'index'])->name('admin.dashboard');
 
-    // User List User List
+    // Admin User List Route
     Route::get('users', [Admin\UserController::class, 'index'])->name('admin.users');
 
-    // User Create User Create
+    // Admin User Create Route
     Route::get('users/create', [Admin\UserController::class, 'create'])->name('admin.users.create');
 
-    // User Store User Store
+    // Admin User Store Route
     Route::post('users/store', [Admin\UserController::class, 'store'])->name('admin.users.store');
 
-    // User Edit User Edit
+    // Admin User Edit Route
     Route::get('users/edit/{id}', [Admin\UserController::class, 'edit'])->name('admin.users.edit');
 
-    // User Update User Update
+    // Admin User Update Route
     Route::post('users/update/{id}', [Admin\UserController::class, 'update'])->name('admin.users.update');
 
-    // User Delete User Delete 
+    // Admin User Delete Route 
     Route::delete('users/delete/{id}', [Admin\UserController::class, 'destroy'])->name('admin.users.destroy');
 
-    // Route for Logout
+    // Admin Logout Route
     Route::post('logout', [Admin\UserController::class, 'logout'])->name('admin.logout');
 
-    // Employee List Route
-    Route::get('employees', [Admin\EmployeeController::class, 'index'])->name('admin.employees'); 
+    // Employee CRUD Routes
+    Route::get('employees', [Admin\EmployeeController::class, 'index'])->name('admin.employees');
+    Route::get('employees/create', [Admin\EmployeeController::class, 'create'])->name('admin.employee.create');
+    Route::post('employees/store', [Admin\EmployeeController::class, 'store'])->name('admin.employee.store');
+    Route::get('employees/show/{id}', [Admin\EmployeeController::class, 'show'])->name('admin.employee.show');
+    Route::get('employees/edit/{id}', [Admin\EmployeeController::class, 'edit'])->name('admin.employee.edit');
+    Route::post('employees/update/{id}', [Admin\EmployeeController::class, 'update'])->name('admin.employee.update');
+    Route::delete('employees/delete/{id}', [Admin\EmployeeController::class, 'destroy'])->name('admin.employee.destroy');
 
-    // My Profile Route
+    // Admin My Profile Route
     Route::get('my-profile', [Admin\UserController::class, 'myProfile'])->name('admin.myProfile');
-    // My Profile update
+    // Admin My Profile update
     Route::post('my-profile/update', [Admin\UserController::class, 'myProfileUpdate'])->name('admin.myProfileUpdate');
 });
 
 // Employee Dashboard Related Group
 Route::group(['prefix' => 'employee', 'middleware' => 'auth'], function () {
-    // Dashboard Route
+    // Employee Dashboard Route
     Route::get('dashboard', [Employees\EmployeeController::class, 'index'])->name('employee.dashboard');
 });
 
@@ -69,7 +70,7 @@ Route::group(['middleware' => 'guest'], function () {
 
 // Employee Dashboard Related Group
 Route::group(['prefix' => 'employee', 'middleware' => 'auth'], function () {
-    // Dashboard Route
+    // Employee Dashboard Route
     Route::get('dashboard', [Employees\EmployeeController::class, 'index'])->name('employee.dashboard');
 
     // Employee Leaves Route

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="icon" type="{{ asset('/assets/image/png') }}" sizes="16x16"
-        href="{{ asset('/assets/png/favicon.png') }}">
+        href="{{ asset('/assets/png/dreamwebdev-logo.png') }}">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('/assets/css/all.min.css') }}" defer="defer">
@@ -36,9 +36,9 @@
 
     <title>Dashboard</title>
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ asset('/assets/png/favicon.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('/assets/png/dreamwebdev-logo.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <meta name="csrf-token" content="8tzOEL4nT9Bva1qlJPL4LXVNFcMhCFO0mGtqX3fh" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link rel="stylesheet" href=" {{ asset('/assets/css/main.min.css') }}" defer="defer">
 
@@ -65,7 +65,7 @@
                         <span class="d-inline-block text-truncate mw-300">Dashboard</span>
 
                         <span class="text-lightest f-12 f-w-500 mx-2 mw-250 text-truncate">
-                            <a href="dashboard.html" class="text-lightest">Home</a> &bull;
+                            <a href="{{ route('homepage') }}" class="text-lightest">Home</a> &bull;
                             Dashboard
                         </span>
                     </h2>
@@ -92,106 +92,6 @@
             </span>
 
             <ul class="d-flex align-items-center">
-                <!-- SEARCH START -->
-                <li data-toggle="tooltip" data-placement="top" title="Search" class="d-none d-sm-block">
-                    <div class="d-flex align-items-center">
-                        <a href="javascript:;" class="d-block header-icon-box open-search">
-                            <i class="fa fa-search f-16 text-dark-grey"></i>
-                        </a>
-                    </div>
-                </li>
-                <!-- SEARCH END -->
-                <!-- Sticky Note START -->
-                <li data-toggle="tooltip" data-placement="top" title="Sticky Notes" class="d-none d-sm-block">
-                    <div class="d-flex align-items-center">
-                        <a href="sticky-notes.html" class="d-block header-icon-box openRightModal">
-                            <i class="fa fa-sticky-note f-16 text-dark-grey"></i>
-                        </a>
-                    </div>
-                </li>
-                <!-- Sticky Note END -->
-
-
-                <!-- START TIMER -->
-                <li data-toggle="tooltip" data-placement="top" title="Start Timer">
-                    <div class="add_box dropdown">
-                        <a class="d-block dropdown-toggle header-icon-box" type="link" id="show-active-timer"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-clock f-16 text-dark-grey"></i>
-                            <span class="badge badge-primary active-timer-count position-absolute d-none">0</span>
-                        </a>
-                        <!-- DROPDOWN - INFORMATION -->
-                        <div class="dropdown-menu dropdown-menu-right" id="active-timer-list"
-                            aria-labelledby="dropdownMenuLink" tabindex="0">
-                            <a class="dropdown-item text-primary f-w-500" href="javascript:;" id="start-timer-modal">
-                                <i class="fa fa-play mr-2"></i>
-                                Start Timer </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- START TIMER END -->
-
-                <!-- ADD START -->
-                <li data-toggle="tooltip" data-placement="top" title="Create new">
-                    <div class="add_box dropdown">
-                        <a class="d-block dropdown-toggle header-icon-box" type="link" data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-plus-circle f-16 text-dark-grey"></i>
-                        </a>
-                        <!-- DROPDOWN - INFORMATION -->
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink" tabindex="0">
-                            <a class="dropdown-item f-14 text-dark openRightModal" href="create.html">
-                                <i class="fa fa-plus f-w-500 mr-2 f-11"></i>
-                                Add Project </a>
-
-                            <a class="dropdown-item f-14 text-dark openRightModal" href="create-2.html">
-                                <i class="fa fa-plus f-w-500 mr-2 f-11"></i>
-                                Add Task </a>
-
-                            <a class="dropdown-item f-14 text-dark openRightModal" href="create-3.html">
-                                <i class="fa fa-plus f-w-500 mr-2 f-11"></i>
-                                Add Client </a>
-
-                            <a class="dropdown-item f-14 text-dark openRightModal" href="create-4.html">
-                                <i class="fa fa-plus f-w-500 mr-2 f-11"></i>
-                                Add Employee </a>
-
-                            <a class="dropdown-item f-14 text-dark openRightModal" href="create-5.html">
-                                <i class="fa fa-plus f-w-500 mr-2 f-11"></i>
-                                Add Payment </a>
-
-                            <a class="dropdown-item f-14 text-dark openRightModal" href="create-6.html">
-                                <i class="fa fa-plus f-w-500 mr-2 f-11"></i>
-                                Create Ticket </a>
-                        </div>
-                    </div>
-                </li>
-                <!-- ADD END -->
-
-                <!-- NOTIFICATIONS START -->
-                <li title="New notifications">
-                    <div class="notification_box dropdown">
-                        <a class="d-block dropdown-toggle header-icon-box show-user-notifications" type="link"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-bell f-16 text-dark-grey"></i>
-                        </a>
-                        <!-- DROPDOWN - INFORMATION -->
-                        <div class="dropdown-menu dropdown-menu-right notification-dropdown border-0 shadow-lg py-0 bg-additional-grey"
-                            tabindex="0">
-                            <div
-                                class="d-flex px-3 justify-content-between align-items-center border-bottom-grey py-1 bg-white">
-                                <div class="___class_+?50___">
-                                    <p class="f-14 mb-0 text-dark f-w-500">New notifications</p>
-                                </div>
-                            </div>
-                            <div id="notification-list">
-
-                            </div>
-
-                        </div>
-                    </div>
-                </li>
-                <!-- NOTIFICATIONS END -->
 
                 <!-- LOGOUT START With Bootstrap Model -->
                 <li data-toggle="tooltip" data-placement="top" title="Logout">

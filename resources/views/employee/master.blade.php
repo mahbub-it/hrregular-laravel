@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="icon" type="{{ asset('/assets/image/png') }}" sizes="16x16"
-        href="{{ asset('/assets/png/favicon.png') }}">
+        href="{{ asset('/assets/png/dreamwebdev-logo.png') }}">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('/assets/css/all.min.css') }}" defer="defer">
@@ -36,9 +36,9 @@
 
     <title>Dashboard</title>
     <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{{ asset('/assets/png/favicon.png') }}">
+    <meta name="msapplication-TileImage" content="{{ asset('/assets/png/dreamwebdev-logo.png') }}">
     <meta name="theme-color" content="#ffffff">
-    <meta name="csrf-token" content="8tzOEL4nT9Bva1qlJPL4LXVNFcMhCFO0mGtqX3fh" />
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link rel="stylesheet" href=" {{ asset('/assets/css/main.min.css') }}" defer="defer">
 

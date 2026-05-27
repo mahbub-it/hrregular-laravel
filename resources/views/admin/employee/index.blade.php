@@ -17,13 +17,11 @@
                 <!-- FILTER START -->
                 <form action="#" id="filter-form">
                     <div class="d-lg-flex d-md-flex d-block flex-wrap filter-box bg-white client-list-filter">
-                        <!-- CLIENT START -->
+                        <!-- Employee filter Start -->
                         <div class="select-box py-2 d-flex pr-2 border-right-grey border-right-grey-sm-0">
                             <p class="mb-0 pr-2 f-14 text-dark-grey d-flex align-items-center">Employee</p>
 
                         </div>
-
-                        <!-- CLIENT END -->
 
 
 
@@ -101,7 +99,7 @@
                                                 aria-label="Email: activate to sort column ascending" style="width: 156px;">
                                                 Email</th>
                                             <th width="20%" title="User Role" class="sorting_disabled" rowspan="1"
-                                                colspan="1" aria-label="User Role" style="width: 253px;">User Role</th>
+                                                colspan="1" aria-label="User Role" style="width: 253px;">Designation</th>
                                             <th title="Status" class="sorting" tabindex="0" aria-controls="employees-table"
                                                 rowspan="1" colspan="1"
                                                 aria-label="Status: activate to sort column ascending" style="width: 69px;">
@@ -111,103 +109,92 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr id="row-1" role="row" class="odd">
-                                            <td>--</td>
-                                            <td><a href="#" class="text-darkest-grey">EMP-1</a></td>
-                                            <td>
-                                                <div class="media align-items-center mw-250">
 
-                                                    <a href="#" class="position-relative ">
-                                                        <img src="#" class="mr-2 taskEmployeeImg rounded-circle"
-                                                            alt="Mrs. Liana Vandervort" title="Mrs. Liana Vandervort">
-                                                    </a>
-                                                    <div class="media-body active text-truncate">
+                                        @foreach ($employees as $employee)
+                                            <tr id="row-1" role="row" class="odd">
+                                                <td>--</td>
+                                                <td><a href="#" class="text-darkest-grey">EMP-{{ $employee->id }}</a></td>
+                                                <td>
+                                                    <div class="media align-items-center mw-250">
 
-                                                        <h5 class="mb-0 f-12">
-                                                            <a href="#" class="text-darkest-grey ">Mrs. Liana Vandervort
-                                                                <span class="ml-1 badge badge-secondary pr-1">It's
-                                                                    you</span></a>
-                                                        </h5>
-                                                        <p class="mb-0 f-12 text-dark-grey">
-                                                            Project Manager
-                                                        </p>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>admin@example.com</td>
-                                            <td>
-                                                <select name="" id="">
-                                                    <option value="">Admin</option>
-                                                    <option value="">Employee</option>
-                                                    <option value="">Manager</option>
-                                                </select>
-                                            </td>
-                                            <td><svg class="svg-inline--fa fa-circle fa-w-16 mr-1 text-light-green f-10"
-                                                    aria-hidden="true" focusable="false" data-prefix="fa" data-icon="circle"
-                                                    role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                                                    data-fa-i2svg="">
-                                                    <path fill="currentColor"
-                                                        d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z">
-                                                    </path>
-                                                </svg><!-- <i class="fa fa-circle mr-1 text-light-green f-10"></i> Font Awesome fontawesome.com -->Active
-                                            </td>
-                                            <td class=" text-right pr-20">
-                                                <div class="task_view">
-
-                                                    <div class="dropdown show">
-                                                        <a class="task_view_more d-flex align-items-center justify-content-center dropdown-toggle"
-                                                            type="link" id="dropdownMenuLink" data-toggle="dropdown"
-                                                            aria-haspopup="true" aria-expanded="false">
-                                                            <i class="icon-options-vertical icons"></i>
+                                                        <a href="#" class="position-relative ">
+                                                            @php
+                                                                $avatar = $employee->user?->getFirstMediaUrl()
+                                                                    ?: asset('assets/png/avatar.png');
+                                                            @endphp
+                                                            <img src="{{ $avatar }}" class="mr-2 taskEmployeeImg rounded-circle"
+                                                                alt="{{ $employee->user->name ?? 'Employee' }}"
+                                                                title="{{ $employee->user->name ?? 'Employee' }}">
                                                         </a>
-
-                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="bx bx-show"></i>View</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="bx bx-edit"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i
-                                                                    class="bx bx-trash"></i>Delete</a>
+                                                        <div class="media-body active text-truncate">
+                                                            <p class="mb-0 f-12 text-dark-grey">
+                                                                {{ $employee->designation->designation_name ?? 'N/A' }}
+                                                            </p>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                                </td>
+                                                <td>{{ $employee->user->email ?? 'N/A' }}</td>
+                                                <td>
+                                                    <select name="" id="">
+                                                        <option value="">{{ $employee->designation->designation_name ?? 'N/A' }}
+                                                        </option>
+                                                    </select>
+                                                </td>
+                                                <td><svg class="svg-inline--fa fa-circle fa-w-16 mr-1 text-light-green f-10"
+                                                        aria-hidden="true" focusable="false" data-prefix="fa" data-icon="circle"
+                                                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                                                        data-fa-i2svg="">
+                                                        <path fill="currentColor"
+                                                            d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z">
+                                                        </path>
+                                                    </svg>
+                                                    {{-- Employee Status --}}
+                                                    @if ($employee->status == 1)
+                                                        <span class="text-light-green">Active</span>
+                                                    @else
+                                                        <span class="text-light-red">Inactive</span>
+                                                    @endif
+                                                </td>
+                                                <td class=" text-right pr-20">
+                                                    <div class="task_view">
+
+                                                        <div class="dropdown show">
+                                                            <a class="task_view_more d-flex align-items-center justify-content-center dropdown-toggle"
+                                                                type="link" id="dropdownMenuLink" data-toggle="dropdown"
+                                                                aria-haspopup="true" aria-expanded="false">
+                                                                <i class="icon-options-vertical icons"></i>
+                                                            </a>
+
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.employee.show', $employee->id) }}"><i
+                                                                        class="bx bx-eye"></i>View</a>
+                                                                <a class="dropdown-item"
+                                                                    href="{{ route('admin.employee.edit', $employee->id) }}"><i
+                                                                        class="bx bx-edit"></i>Edit</a>
+                                                                <a class="dropdown-item" href="#"><i
+                                                                        class="bx bx-trash"></i>Delete</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                                 <div id="employees-table_processing" class="dataTables_processing card"
                                     style="display: none;">Processing...</div>
                             </div>
                         </div>
-                        <div class="d-flex">
-                            <div class="flex-grow-1">
-                                <div class="dataTables_length" id="employees-table_length"><label>Show <select
-                                            name="employees-table_length" aria-controls="employees-table"
-                                            class="custom-select custom-select-sm form-control form-control-sm">
-                                            <option value="10">10</option>
-                                            <option value="25">25</option>
-                                            <option value="50">50</option>
-                                            <option value="100">100</option>
-                                        </select> entries</label></div>
-                            </div>
+                        <div class="d-flex align-items-center justify-content-between px-3 py-2">
                             <div>
                                 <div class="dataTables_info" id="employees-table_info" role="status" aria-live="polite">
-                                    Showing 1 to 1 of 1 entries</div>
+                                    Showing {{ $employees->firstItem() ?? 0 }} to {{ $employees->lastItem() ?? 0 }}
+                                    of {{ $employees->total() }} entries
+                                </div>
                             </div>
                             <div>
-                                <div class="dataTables_paginate paging_simple_numbers" id="employees-table_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button page-item previous disabled"
-                                            id="employees-table_previous"><a href="#" aria-controls="employees-table"
-                                                data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
-                                        <li class="paginate_button page-item active"><a href="#"
-                                                aria-controls="employees-table" data-dt-idx="1" tabindex="0"
-                                                class="page-link">1</a></li>
-                                        <li class="paginate_button page-item next disabled" id="employees-table_next"><a
-                                                href="#" aria-controls="employees-table" data-dt-idx="2" tabindex="0"
-                                                class="page-link">Next</a></li>
-                                    </ul>
-                                </div>
+                                {{ $employees->links() }}
                             </div>
                         </div>
                     </div>

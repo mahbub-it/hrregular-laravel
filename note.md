@@ -573,6 +573,7 @@ LoginLink.addEventListener('click', () => {
 # 2. Run your pull command to trigger the final password prompt
 - git pull origin main
 
-time now:
-Class 51  18:55
+# Add status column to employees table
+- php artisan make:migration add_status_column_to_employees_table
+- php artisan migrate
 

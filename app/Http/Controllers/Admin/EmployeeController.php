@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
@@ -12,7 +13,12 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        return view('admin.employee.index');
+        // Get all employees with pagination
+        $employees = Employee::with(['user.media', 'designation'])->paginate(10);
+
+        return view('admin.employee.index', [
+            'employees' => $employees,
+        ]);
     }
 
     /**
@@ -36,7 +42,14 @@ class EmployeeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        // Single Employee Information 
+        $employee = Employee::with(['user.media', 'designation'])->find($id);
+        if ($employee) {
+            return view('admin.employee.show', [
+                'employee' => $employee,
+            ]);
+        }
+        abort(404);
     }
 
     /**
