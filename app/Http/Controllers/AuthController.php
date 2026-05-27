@@ -19,8 +19,8 @@ class AuthController extends Controller
     public function login_post(Request $request)
     {
         $data = $request->validate([
-            'email' => 'required | email | exists:users,email',
-            'password' => 'required | min:6'
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required|min:6'
         ]);
 
         if (Auth::attempt($data)) {

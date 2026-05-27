@@ -53,6 +53,11 @@
                         @endforeach
 
                     @endif
+                    @if (session('error'))
+                        <div class="alert alert-danger" style="color: red;">
+                            Error: {{ session('error') }}
+                        </div>
+                    @endif
                 </div>
                 <h2 class="animation" style="--D:0; --S:20">WELCOME BACK!</h2>
                 <p class="animation" style="--D:1; --S:21">We are happy to have you with us again. If you need anything,

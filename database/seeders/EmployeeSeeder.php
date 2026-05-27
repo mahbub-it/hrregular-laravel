@@ -14,6 +14,10 @@ class EmployeeSeeder extends Seeder
      */
     public function run(): void
     {
-        Employee::factory(count(User::all()))->create();
+        // Get all non-admin users
+        $nonAdminUsers = User::where('role', '!=', 'administrator')->get();
+        
+        // Create one employee for each non-admin user
+        Employee::factory(count($nonAdminUsers))->create();
     }
 }
