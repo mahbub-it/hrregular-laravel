@@ -82,11 +82,6 @@
                                                                 Logged</label>
                                                             <p class="mb-0 f-18 f-w-500">0</p>
                                                         </span>
-                                                        <span>
-                                                            <label class="f-11 text-dark-grey mb-12 "
-                                                                for="usr">Tickets</label>
-                                                            <p class="mb-0 f-18 f-w-500">0</p>
-                                                        </span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -324,27 +319,6 @@
                                                     <div class="m-auto" style="height: 250px; width: 250px">
                                                         <canvas id="task-chart" height="250" width="250"></canvas>
 
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 mb-4">
-                                                <div class="card bg-white border-0 b-shadow-4 pb-3">
-                                                    <div
-                                                        class="card-header bg-white border-0  d-flex justify-content-between pt-4">
-                                                        <h4 class="f-18 f-w-500 mb-0">Tickets</h4>
-
-
-
-                                                    </div>
-
-                                                    <div class="card-body p-0 ">
-                                                        <div class="text-center text-lightest p-20" style="height: 250px">
-
-                                                            <i class="side-icon f-21 bi bi-pie-chart"></i>
-                                                            <div class="f-15 mt-4">
-                                                                - Not enough data -
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>

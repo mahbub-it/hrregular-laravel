@@ -94,16 +94,19 @@
                                             <th title="Name" class="sorting" tabindex="0" aria-controls="employees-table"
                                                 rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending"
                                                 style="width: 268px;">Name</th>
+                                            <th title="Name" class="sorting" tabindex="0" aria-controls="employees-table"
+                                                rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending"
+                                                style="width: 268px;">Email</th>
                                             <th title="Email" class="sorting" tabindex="0" aria-controls="employees-table"
                                                 rowspan="1" colspan="1"
                                                 aria-label="Email: activate to sort column ascending" style="width: 156px;">
-                                                Email</th>
+                                                Designation</th>
                                             <th width="20%" title="User Role" class="sorting_disabled" rowspan="1"
-                                                colspan="1" aria-label="User Role" style="width: 253px;">Designation</th>
+                                                colspan="1" aria-label="User Role" style="width: 253px;">Status</th>
                                             <th title="Status" class="sorting" tabindex="0" aria-controls="employees-table"
                                                 rowspan="1" colspan="1"
                                                 aria-label="Status: activate to sort column ascending" style="width: 69px;">
-                                                Status</th>
+                                                Action</th>
                                             <th title="Action" class="text-right pr-20 sorting_disabled" rowspan="1"
                                                 colspan="1" aria-label="Action" style="width: 65px;">Action</th>
                                         </tr>
@@ -128,17 +131,15 @@
                                                         </a>
                                                         <div class="media-body active text-truncate">
                                                             <p class="mb-0 f-12 text-dark-grey">
-                                                                {{ $employee->designation->designation_name ?? 'N/A' }}
+                                                                {{ $employee->user->name ?? 'N/A' }}
                                                             </p>
                                                         </div>
                                                     </div>
                                                 </td>
                                                 <td>{{ $employee->user->email ?? 'N/A' }}</td>
                                                 <td>
-                                                    <select name="" id="">
-                                                        <option value="">{{ $employee->designation->designation_name ?? 'N/A' }}
-                                                        </option>
-                                                    </select>
+                                                    <p>{{ $employee->designation->designation_name ?? 'N/A' }}
+                                                    </p>
                                                 </td>
                                                 <td><svg class="svg-inline--fa fa-circle fa-w-16 mr-1 text-light-green f-10"
                                                         aria-hidden="true" focusable="false" data-prefix="fa" data-icon="circle"
@@ -172,9 +173,53 @@
                                                                 <a class="dropdown-item"
                                                                     href="{{ route('admin.employee.edit', $employee->id) }}"><i
                                                                         class="bx bx-edit"></i>Edit</a>
-                                                                <a class="dropdown-item" href="#"><i
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-danger py-1 px-4 link-light"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#deleteModal{{ $employee->id }}"><i
                                                                         class="bx bx-trash"></i>Delete</a>
                                                             </div>
+                                                            <form action="{{ route('admin.employee.destroy', $employee->id) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="deleteModal{{ $employee->id }}"
+                                                                    tabindex="-1"
+                                                                    aria-labelledby="deleteModalLabel{{ $employee->id }}"
+                                                                    aria-hidden="true">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <h1 class="modal-title fs-5"
+                                                                                    id="deleteModalLabel{{ $employee->id }}">
+                                                                                    Delete
+                                                                                    User
+                                                                                </h1>
+                                                                                <button type="button" class="btn-close"
+                                                                                    data-bs-dismiss="modal"
+                                                                                    aria-label="Close"></button>
+                                                                            </div>
+
+                                                                            <!-- This current user delete -->
+                                                                            <div class="modal-body">
+                                                                                <p class="text-start">Are you sure you want to
+                                                                                    delete
+                                                                                    <span
+                                                                                        class="fw-bold">{{ $employee->user->name ?? 'N/A' }}</span>
+                                                                                    this employee?
+                                                                                </p>
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-primary"
+                                                                                    data-bs-dismiss="modal">No</button>
+                                                                                <button type="submit"
+                                                                                    class="btn btn-danger">Yes</button>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </td>

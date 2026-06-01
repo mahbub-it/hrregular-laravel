@@ -58,7 +58,14 @@ class EmployeeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        // Edit Employee Information 
+        $employee = Employee::with(['user.media', 'designation'])->findOrFail($id);
+        if ($employee) {
+            return view('admin.employee.edit', [
+                'employee' => $employee,
+            ]);
+        }
+        abort(404);
     }
 
     /**
@@ -66,7 +73,10 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Update Employee Information 
+        $employee = Employee::findOrFail($id);
+        $employee->update($request->all());
+        return redirect()->route('admin.employees')->with('success', 'Employee updated successfully');
     }
 
     /**
@@ -74,6 +84,9 @@ class EmployeeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Employee Delete
+        $employee = Employee::findOrFail($id);
+        $employee->delete();
+        return redirect()->route('admin.employees')->with('success', 'Employee deleted successfully');
     }
 }

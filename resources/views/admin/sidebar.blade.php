@@ -153,9 +153,9 @@
                 </li>
 
                 <!-- NAV ITEM - HR COLLAPASE MENU -->
-                <li class="accordionItem closeIt">
-
-                    <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading " title="HR">
+                <li class="accordionItem {{ request()->is('admin/employees*') ? 'openIt' : 'closeIt' }}">
+                    <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading {{ request()->is('admin/employees*') ? 'active' : '' }}"
+                        title="HR">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-people" viewBox="0 0 16 16">
                             <path
@@ -165,9 +165,11 @@
 
                     </a>
 
-                    <div class="accordionItemContent">
+                    <div class="accordionItemContent {{ request()->is('admin/employees*') ? 'active' : '' }}">
                         <!-- COLLAPSE - INFORMATION -->
-                        <a class="f-14 text-lightest" href="{{ route('admin.employees') }}" title="Employees">Employees
+                        <a href="{{ route('admin.employees')}}"
+                            class="f-14 text-lightest {{ route('admin.employees') == url()->current() ? 'active' : '' }}"
+                            title="Employees">Employees
                         </a>
                         <!-- COLLAPSE - INFORMATION -->
                         <a class="f-14 text-lightest" href="leaves.html" title="Leaves">Leaves
