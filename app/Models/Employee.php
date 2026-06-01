@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Designation;
+use App\Models\Department;
+use App\Models\Country;
+use App\Models\Language;
 
 
 class Employee extends Model
@@ -31,18 +36,33 @@ class Employee extends Model
         'timestamps',
     ];
 
+    // User Relationship
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
+    // Designation Relationship
     public function designation()
     {
         return $this->belongsTo(Designation::class);
     }
 
-    // public function department()
-    // {
-    //     return $this->hasOne(Department::class, 'id', 'department_id');
-    // }
+    // Department Relationship
+    public function department()
+    {
+        return $this->belongsTo(Department::class);
+    }
+
+    // Country Relationship
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
+    // Language Relationship
+    public function language()
+    {
+        return $this->belongsTo(Language::class);
+    }
 }
