@@ -108,7 +108,7 @@
 
                     </a>
 
-                    <div class="accordionItemContent {{ request()->is('admin/users*') ? 'active' : '' }}">
+                    <div class="accordionItemContent">
                         <!-- COLLAPSE - INFORMATION -->
                         <a href="{{ route('admin.users')}}"
                             class="f-14 text-lightest {{ route('admin.users') == url()->current() ? 'active' : '' }}"
@@ -135,26 +135,29 @@
                     </div>
                 </li>
 
-                <!-- NAV ITEM - MY CALENDAR -->
-                <li class="accordionItem closeIt">
+                <div class="accordionItemContent {{ request()->is('admin/my-calendar') ? 'active' : '' }}">
+                    <!-- NAV ITEM - MY CALENDAR -->
+                    <li class="accordionItem">
 
-                    <a class="nav-item text-lightest f-15 sidebar-text-color" href="my-calendar.html"
-                        title="My Calendar">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                            class="bi bi-calendar-range" viewBox="0 0 16 16">
-                            <path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1M1 9h4a1 1 0 0 1 0 2H1z" />
-                            <path
-                                d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
-                        </svg>
-                        <span class="pl-3">My Calendar</span>
-                    </a>
+                        <a class="nav-item text-lightest f-15 sidebar-text-color" href="{{ route('admin.my-calendar')}}"
+                            title="My Calendar">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-calendar-range" viewBox="0 0 16 16">
+                                <path d="M9 7a1 1 0 0 1 1-1h5v2h-5a1 1 0 0 1-1-1M1 9h4a1 1 0 0 1 0 2H1z" />
+                                <path
+                                    d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z" />
+                            </svg>
+                            <span class="pl-3">My Calendar</span>
+                        </a>
 
 
-                </li>
+                    </li>
+                </div>
 
                 <!-- NAV ITEM - HR COLLAPASE MENU -->
-                <li class="accordionItem {{ request()->is('admin/employees*') ? 'openIt' : 'closeIt' }}">
-                    <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading {{ request()->is('admin/employees*') ? 'active' : '' }}"
+                <li
+                    class="accordionItem {{ request()->is('admin/employees*') || request()->is('admin/leaves*') || request()->is('admin/holidays*') ? 'openIt' : 'closeIt' }}">
+                    <a class="nav-item text-lightest f-15 sidebar-text-color accordionItemHeading {{ request()->is('admin/employees*') || request()->is('admin/leaves*') || request()->is('admin/holidays*') ? 'active' : '' }}"
                         title="HR">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-people" viewBox="0 0 16 16">
@@ -165,34 +168,37 @@
 
                     </a>
 
-                    <div class="accordionItemContent {{ request()->is('admin/employees*') ? 'active' : '' }}">
-                        <!-- COLLAPSE - INFORMATION -->
+                    <!-- Multiple accordion  -->
+                    <div class="accordionItemContent">
+
                         <a href="{{ route('admin.employees')}}"
                             class="f-14 text-lightest {{ route('admin.employees') == url()->current() ? 'active' : '' }}"
                             title="Employees">Employees
                         </a>
-                        <!-- COLLAPSE - INFORMATION -->
-                        <a class="f-14 text-lightest" href="leaves.html" title="Leaves">Leaves
+
+                        <a href="{{ route('admin.leaves')}}"
+                            class="f-14 text-lightest {{ route('admin.leaves') == url()->current() ? 'active' : '' }}"
+                            title="Leaves">Leaves
                         </a>
-                        <!-- COLLAPSE - INFORMATION -->
+
                         <a class="f-14 text-lightest" href="shifts.html" title="Shift Roster">Shift Roster
                         </a>
-                        <!-- COLLAPSE - INFORMATION -->
+
                         <a class="f-14 text-lightest" href="attendances.html" title="Attendance">Attendance
                         </a>
-                        <!-- COLLAPSE - INFORMATION -->
+
                         <a class="f-14 text-lightest" href="holidays.html" title="Holiday">Holiday
                         </a>
-                        <!-- COLLAPSE - INFORMATION -->
+
                         <a class="f-14 text-lightest" href="designations.html" title="Designation">Designation
                         </a>
-                        <!-- COLLAPSE - INFORMATION -->
+
                         <a class="f-14 text-lightest" href="departments.html" title="Department">Department
                         </a>
-                        <!-- COLLAPSE - INFORMATION -->
+
                         <a class="f-14 text-lightest" href="appreciations.html" title="Appreciation">Appreciation
                         </a>
-                        <!-- NAV ITEM - CUSTOM MODULES  -->
+
                     </div>
                 </li>
 
@@ -201,42 +207,4 @@
         <!-- SIDEBAR MENU END -->
     </div>
     <!-- MAIN SIDEBAR END -->
-    <!-- Sidebar Toggler -->
-    <div class="text-center d-flex justify-content-between align-items-center position-fixed sidebarTogglerBox ">
-        <button class="border-0 d-lg-block d-none text-lightest font-weight-bold" id="sidebarToggle"></button>
-
-        <button type="button" class="btn px-2 py-1 btn-primary btn-sm f-10 pull-left" data-toggle="modal"
-            data-target="#raiseSupportTicketModal">
-            Raise Support Ticket
-        </button>
-        <p class="mb-0 text-dark-grey px-1 py-0 rounded f-10">v5.5.26
-        </p>
-    </div>
-    <!-- Sidebar Toggler -->
-
-    <!-- Raise Support Ticket Modal -->
-    <div id="raiseSupportTicketModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Raise Support Ticket</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="container-fluid">
-                        <!-- Header -->
-                        <div class="text-center mb-4">
-                            <h2 class="text-xl font-weight-bold text-dark mb-2">Choose Your Support Option</h2>
-                            <p class="text-muted">Select the support service that best fits your needs</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
 </aside>

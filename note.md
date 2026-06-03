@@ -577,3 +577,12 @@ LoginLink.addEventListener('click', () => {
 - php artisan make:migration add_status_column_to_employees_table
 - php artisan migrate
 
+# Make Leave Controller
+- php artisan make:controller Admin/LeaveController --resource
+
+# Make My Calendar Controller
+- php artisan make:controller Admin/MyCalendarController --resource
+- php artisan make:model LeaveType 
+- php artisan make:model Leave
+
+

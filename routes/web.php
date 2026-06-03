@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin;
 use App\Http\Controllers\Employees;
 use App\Http\Controllers\EmployeeController;
 
+
 Route::get('/', function () {
     return view('welcome');
 })->name('homepage');
@@ -46,6 +47,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'can:manage_all']], 
     Route::get('employees/edit/{id}', [Admin\EmployeeController::class, 'edit'])->name('admin.employee.edit');
     Route::delete('employees/{id}', [Admin\EmployeeController::class, 'destroy'])->name('admin.employee.destroy');
 
+    // My Calendar Route
+    Route::get('my-calendar', [Admin\MyCalendarController::class, 'index'])->name('admin.my-calendar');
+
+    // Employee Leaves Route
+    Route::get('leaves', [Admin\LeaveController::class, 'index'])->name('admin.leaves');
+    Route::get('leaves/create', [Admin\LeaveController::class, 'create'])->name('admin.leaves.create');
+    Route::post('leaves/store', [Admin\LeaveController::class, 'store'])->name('admin.leaves.store');
+    Route::get('leaves/{id}', [Admin\LeaveController::class, 'show'])->name('admin.leaves.show');
+    Route::get('leaves/edit/{id}', [Admin\LeaveController::class, 'edit'])->name('admin.leaves.edit');
+    Route::delete('leaves/{id}', [Admin\LeaveController::class, 'destroy'])->name('admin.leaves.destroy');
+
 
     // Admin My Profile Route
     Route::get('my-profile', [Admin\UserController::class, 'myProfile'])->name('admin.myProfile');
@@ -72,9 +84,6 @@ Route::group(['middleware' => 'guest'], function () {
 Route::group(['prefix' => 'employee', 'middleware' => 'auth'], function () {
     // Employee Dashboard Route
     Route::get('dashboard', [Employees\EmployeeController::class, 'index'])->name('employee.dashboard');
-
-    // Employee Leaves Route
-    Route::get('leaves', [Employees\EmployeeController::class, 'leaves'])->name('employee.leaves');
 
     // Employee Attendance Route
     Route::get('attendance', [Employees\EmployeeController::class, 'attendance'])->name('employee.attendance');

@@ -23,8 +23,6 @@
 
                         </div>
 
-
-
                         <!-- SEARCH BY TASK START -->
                         <div class="task-search d-flex  py-1 px-lg-3 px-0 border-right-grey align-items-center">
 
