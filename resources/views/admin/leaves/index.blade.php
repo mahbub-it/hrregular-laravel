@@ -66,7 +66,9 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $leave->id }}</td>
                                     <td><img class="avatar-img rounded-circle w-10 h-10 mr-2"
-                                            src="{{ $leave->employee?->user?->hasMedia('profile_picture') ? $leave->employee?->user?->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}">{{ $leave->employee?->user?->name }}
+                                            src="{{ $leave->employee?->user?->hasMedia('profile_picture') ? $leave->employee?->user?->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}">
+                                        {{ $leave->employee?->user?->name }}
+                                        <p>{{ $leave->employee?->designation?->designation_name }}</p>
                                     </td>
                                     <td>{{ $leave->employee?->user?->email }}</td>
                                     <td>{{ $leave->duration_dates }}</td>
