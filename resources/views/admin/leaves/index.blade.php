@@ -24,6 +24,11 @@
                             <i class="fa fa-file-export mr-1"></i>
                             Export
                         </button>
+                        @if (session()->has('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -40,8 +45,8 @@
                                 </th>
                                 <th title="#">#</th>
                                 <th title="Id">Id</th>
-                                <th title="Employee">Employee</th>
-                                <th title="Employee">Employee</th>
+                                <th title="Employee Name">Employee Name</th>
+                                <th title="Email">Email</th>
                                 <th title="Leave Date">Leave Date</th>
                                 <th title="Duration">Duration</th>
                                 <th title="Leave Status">Leave Status</th>
@@ -50,26 +55,35 @@
                                 <th title="Action">Action</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="select_all_table" id="select-all-table"
-                                        onclick="selectAllTable(this)">
-                                </td>
-                                <td>1</td>
-                                <td>1</td>
-                                <td>John Doe</td>
-                                <td>[EMAIL_ADDRESS]</td>
-                                <td>2022-01-01</td>
-                                <td>1 day</td>
-                                <td>Approved</td>
-                                <td>Sick Leave</td>
-                                <td>Yes</td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm">Edit</a>
-                                    <a href="#" class="btn btn-danger btn-sm">Delete</a>
-                                </td>
-                            </tr>
+                            @foreach ($leaves as $leave)
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="select_all_table" id="select-all-table"
+                                            onclick="selectAllTable(this)">
+                                    </td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $leave->id }}</td>
+                                    <td><img class="avatar-img rounded-circle w-10 h-10 mr-2"
+                                            src="{{ $leave->employee?->user?->hasMedia('profile_picture') ? $leave->employee?->user?->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}">{{ $leave->employee?->user?->name }}
+                                    </td>
+                                    <td>{{ $leave->employee?->user?->email }}</td>
+                                    <td>{{ $leave->duration_dates }}</td>
+                                    <td>{{ $leave->duration }}</td>
+                                    <td>{{ $leave->status }}</td>
+                                    <td>
+                                        <p class="bg-success text-white rounded text-center my-2">
+                                            {{ $leave->leave_type?->type_name }}
+                                        </p>
+                                    </td>
+                                    <td>{{ $leave->paid }}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                                        <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
 

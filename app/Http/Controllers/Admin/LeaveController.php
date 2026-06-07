@@ -15,8 +15,8 @@ class LeaveController extends Controller
      */
     public function index()
     {
-        return view('admin.leaves.index');
-
+        $leaves = Leave::with(['employee.user', 'leave_type'])->paginate(10);
+        return view('admin.leaves.index', compact('leaves'));
     }
 
     /**

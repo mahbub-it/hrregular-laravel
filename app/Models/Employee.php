@@ -60,7 +60,7 @@ class Employee extends Model
         return $this->belongsTo(Country::class);
     }
 
-    // Language Relationship
+    // Language Relationship 
     public function language()
     {
         return $this->belongsTo(Language::class);

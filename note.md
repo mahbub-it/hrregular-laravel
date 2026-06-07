@@ -586,3 +586,11 @@ LoginLink.addEventListener('click', () => {
 - php artisan make:model Leave
 
 
+# Image showing issue
+{{ $leave->employee?->user?->hasMedia('profile_picture') ? $leave->employee?->user?->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}
+
+{{ auth()->user()->hasMedia('profile_picture') ? auth()->user()->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}
+
+{{ $user->hasMedia('profile_picture') ? $user->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}
+
+10:42

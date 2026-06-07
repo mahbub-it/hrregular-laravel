@@ -52,7 +52,7 @@
                                         class="form-control select-picker" data-size="8">
                                         <option value=""> -- Select Employee -- </option>
                                         @foreach ($employees as $employee)
-                                            <option value="{{ $employee->user->id }}">
+                                            <option value="{{ $employee->id }}">
                                                 {{ $employee->user->name }}
                                             </option>
                                         @endforeach

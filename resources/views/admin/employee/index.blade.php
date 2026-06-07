@@ -119,11 +119,8 @@
                                                     <div class="media align-items-center mw-250">
 
                                                         <a href="#" class="position-relative ">
-                                                            @php
-                                                                $avatar = $employee->user?->getFirstMediaUrl()
-                                                                    ?: asset('assets/png/avatar.png');
-                                                            @endphp
-                                                            <img src="{{ $avatar }}" class="mr-2 taskEmployeeImg rounded-circle"
+                                                            <img class="mr-2 taskEmployeeImg rounded-circle w-20 h-20"
+                                                                src="{{ $employee->user?->hasMedia('profile_picture') ? $employee->user?->getFirstMediaUrl('profile_picture') : asset('images/default-avatar.png') }}"
                                                                 alt="{{ $employee->user->name ?? 'Employee' }}"
                                                                 title="{{ $employee->user->name ?? 'Employee' }}">
                                                         </a>
